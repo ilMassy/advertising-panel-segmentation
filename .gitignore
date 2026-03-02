@@ -5,7 +5,7 @@ __pycache__/
 # Virtual Environment
 venv/
 
-# Dataset (NON carichiamo le immagini su GitHub)
+# Dataset (NON carico le immagini su GitHub)
 data/raw/*
 data/processed/*
 !data/raw/.gitkeep
