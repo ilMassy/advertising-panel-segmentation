@@ -1,20 +1,26 @@
-# Python cache
+# Python cache and environment
 __pycache__/
 *.py[cod]
-
-# Virtual Environment
+env1/
 venv/
 
-# Dataset (NON carico le immagini su GitHub)
+# Large dataset files and media
 data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+data/processed/test/
+data/processed/train/
+data/processed/valid/
+*.zip
+*.mp4
 
-# Pesi del modello (pesanti)
+# EXCEPTIONS: Keep configuration files
+!data/processed/data.yaml
+!data/.gitkeep
+
+# ML Models and training results
+runs/
 models/*.pt
 
-# Altri file di sistema
+# System and IDE files
 .DS_Store
 .idea/
 .vscode/
