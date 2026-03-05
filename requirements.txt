@@ -1,5 +1,18 @@
+# Computer Vision & Augmentation
+numpy
 pillow
-ultralytics
+opencv-python
+matplotlib
+albumentations
+
+# Deep Learning
 torch
 torchvision
-opencv-python
+
+# OpenMMLab (SegFormer-B1)
+mmengine==0.10.3
+mmcv-lite==2.1.0
+mmsegmentation==1.2.2
+
+# Compatibility fix
+setuptools<70.0.0
