@@ -1,4 +1,4 @@
-## E1: Segmentazione Avanzata di Pannelli Pubblicitari (High-Res Transformer Approach)
+## Segmentazione Avanzata di Pannelli Pubblicitari (High-Res Transformer Approach)
 🇮🇹 Descrizione del Progetto
 Sviluppo di un sistema di Semantic Segmentation ad alta precisione per l'individuazione di pannelli pubblicitari in ambito broadcast sportivo.
 A differenza degli approcci standard (CNN-based), il progetto adotta l'architettura SegFormer, sfruttando un Hierarchical Transformer Encoder per gestire la coerenza spaziale e la variabilità di risoluzione. L'obiettivo è superare i limiti della bassa risoluzione (640x640) utilizzando un dataset custom a 1080p per garantire la massima precisione sui bordi e nelle condizioni di occlusione critica.
