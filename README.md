@@ -1,23 +1,23 @@
-# Advertising Panel Segmentation: CNN + Attention
-## Segmentazione Pannelli Pubblicitari con Approccio Ibrido
+## E1: Segmentazione Avanzata di Pannelli Pubblicitari (High-Res Transformer Approach)
+🇮🇹 Descrizione del Progetto
+Sviluppo di un sistema di Semantic Segmentation ad alta precisione per l'individuazione di pannelli pubblicitari in ambito broadcast sportivo.
+A differenza degli approcci standard (CNN-based), il progetto adotta l'architettura SegFormer, sfruttando un Hierarchical Transformer Encoder per gestire la coerenza spaziale e la variabilità di risoluzione. L'obiettivo è superare i limiti della bassa risoluzione (640x640) utilizzando un dataset custom a 1080p per garantire la massima precisione sui bordi e nelle condizioni di occlusione critica.
 
----
+🇬🇧 Project Description
+Development of a high-precision Semantic Segmentation system for advertising board detection in sports broadcasting.
+Unlike standard CNN-based approaches, this project employs the SegFormer architecture, utilizing a Hierarchical Transformer Encoder to manage spatial coherence and resolution variability. The goal is to overcome low-resolution limitations (640x640) by using a custom 1080p dataset to ensure maximum edge precision and robustness under critical occlusion conditions.
 
-### 🇮🇹 Descrizione del Progetto
-Sviluppo di un modello di **Instance Segmentation** per l'individuazione di pannelli pubblicitari in ambito sportivo. Il progetto si focalizza sulla gestione di **occlusioni** (es. giocatori), **Extreme Angles** (prospettive spinte che distorcono la geometria dei pannelli), **sfocature da movimento** (motion blur).
-L'obiettivo è integrare moduli di **Self-Attention** in una pipeline **YOLOv8** per migliorare la precisione spaziale.
+🚀 Roadmap per il Massimo Punteggio (Criteria-Aligned)
+[x] Project Structure & Repository Setup: Configurazione ambiente Python 3.12 e MMSegmentation.
 
-### 🇬🇧 Project Description
-Development of an **Instance Segmentation** model for advertising board detection in sports broadcasting. The project focuses on handling **occlusions** (e.g. players), **extreme angles** (steep perspectives that distort the boards' geometry), **motion blur**.
-The goal is to integrate **Self-Attention** modules within a **YOLOv8** pipeline to enhance spatial accuracy.
+[ ] Phase 1: High-Res Dataset Curation: Estrazione frame a 1920x1080 da highlights HD e annotazione poligonale chirurgica su CVAT.ai.
 
----
+[ ] Phase 2: Baseline SegFormer-B1: Addestramento del modello base per stabilire il benchmark di IoU (Intersection over Union).
 
-### Roadmap
-- [x] Project Structure & Repository Setup
-- [ ] Phase 1: Dataset Curation
-- [ ] Phase 2: Baseline Model (YOLOv8-seg)
-- [ ] Phase 3: Advanced Data Augmentation
-- [ ] Phase 4: Architectural Upgrade (Self-Attention)
-- [ ] Phase 5: Stress Testing & Critical Analysis
-- [ ] Phase 6: Final Documentation
+[ ] Phase 3: Domain-Specific Augmentation: Implementazione di tecniche per simulare Motion Blur e Occlusioni (come richiesto dalle slide del progetto E1).
+
+[ ] Phase 4: Architectural Optimization: Modifica del Decoder Head o degli iper-parametri di Self-Attention per ottimizzare il rilevamento su pannelli in prospettiva.
+
+[ ] Phase 5: Critical Analysis & Benchmarking: Confronto qualitativo e quantitativo tra il dataset standard (bassa res) e l'approccio Full HD.
+
+[ ] Phase 6: Final Documentation: Relazione tecnica dettagliata su architettura, training log e analisi dei casi d'uso difficili.
