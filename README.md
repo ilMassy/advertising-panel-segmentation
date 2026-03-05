@@ -7,7 +7,7 @@ A differenza degli approcci standard (CNN-based), il progetto adotta l'architett
 Development of a high-precision Semantic Segmentation system for advertising board detection in sports broadcasting.
 Unlike standard CNN-based approaches, this project employs the SegFormer architecture, utilizing a Hierarchical Transformer Encoder to manage spatial coherence and resolution variability. The goal is to overcome low-resolution limitations (640x640) by using a custom 1080p dataset to ensure maximum edge precision and robustness under critical occlusion conditions.
 
-🚀 Roadmap per il Massimo Punteggio (Criteria-Aligned)
+🚀 Roadmap
 [x] Project Structure & Repository Setup: Configurazione ambiente Python 3.12 e MMSegmentation.
 
 [ ] Phase 1: High-Res Dataset Curation: Estrazione frame a 1920x1080 da highlights HD e annotazione poligonale chirurgica su CVAT.ai.
