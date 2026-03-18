@@ -11,7 +11,7 @@ Unlike standard CNN-based approaches, this project employs the SegFormer archite
 
 [x] Project Structure & Repository Setup: Configurazione ambiente Python 3.12 e MMSegmentation.
 
-[ ] Phase 1: High-Res Dataset Curation: Estrazione frame a 1920x1080 da highlights HD e annotazione poligonale chirurgica su CVAT.ai.
+[x] Phase 1: High-Res Dataset Curation: Estrazione frame a 1920x1080 da highlights HD e annotazione poligonale chirurgica su CVAT.ai.
 
 [ ] Phase 2: Baseline SegFormer-B1: Addestramento del modello base per stabilire il benchmark di IoU (Intersection over Union).
 
