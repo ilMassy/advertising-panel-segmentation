@@ -1,26 +1,31 @@
-# Python cache and environment
+# === Python Environment & Cache ===
 __pycache__/
 *.py[cod]
+*.class
 env1/
 venv/
+.venv/
 
-# Large dataset files and media
-data/raw/*
-data/processed/test/
-data/processed/train/
-data/processed/valid/
-*.zip
-*.mp4
-
-# EXCEPTIONS: Keep configuration files
+# === Large Dataset & Media ===
+data/
 !data/processed/data.yaml
 !data/.gitkeep
+*.mp4
+*.zip
+*.tar.gz
 
-# ML Models and training results
+# === ML Models & Training Outputs ===
 runs/
 models/*.pt
+*.pth
+work_dirs/
+checkpoint/
 
-# System and IDE files
+# === Visualizations & Debugging ===
+mask_check_preview.png
+*.log
+
+# === System & IDE ===
 .DS_Store
 .idea/
 .vscode/

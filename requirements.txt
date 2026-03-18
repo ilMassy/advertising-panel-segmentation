@@ -4,6 +4,7 @@ pillow
 opencv-python
 matplotlib
 albumentations
+pycocotools
 
 # Deep Learning
 torch
