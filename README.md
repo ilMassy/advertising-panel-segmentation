@@ -15,7 +15,7 @@ Unlike standard CNN-based approaches, this project employs the SegFormer archite
 
 [ ] Phase 2: Baseline SegFormer-B1: Addestramento del modello base per stabilire il benchmark di IoU (Intersection over Union).
 
-[ ] Phase 3: Domain-Specific Augmentation: Implementazione di tecniche per simulare Motion Blur e Occlusioni (come richiesto dalle slide del progetto E1).
+[ ] Phase 3: Domain-Specific Augmentation: Implementazione di tecniche per simulare Motion Blur e Occlusioni.
 
 [ ] Phase 4: Architectural Optimization: Modifica del Decoder Head o degli iper-parametri di Self-Attention per ottimizzare il rilevamento su pannelli in prospettiva.
 
