@@ -16,4 +16,3 @@ albumentations
 pycocotools
 # --- Compatibility & Environment Fixes ---
 setuptools<70.0.0
-ftfy
