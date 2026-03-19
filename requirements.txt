@@ -4,7 +4,7 @@ torch==2.4.1
 torchvision==0.19.1
 # --- OpenMMLab Stack (SegFormer-B1) ---
 # Specific versions to bypass 'pkg_resources' build errors
-mmengine==0.10.3
+mmengine==0.10.7
 mmcv==2.2.0
 mmsegmentation==1.2.2
 # --- Computer Vision & Augmentation ---
