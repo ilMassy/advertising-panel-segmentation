@@ -76,7 +76,7 @@ advertising-panel-segmentation/
 │   └── Segformer_training.ipynb    # Google Colab training notebook
 ├── results/                        # Training logs and metrics
 ├── src/
-|   ├── CVAT_preparation.py         # COCO JSON → binary PNG masks
+│   ├── CVAT_preparation.py         # COCO JSON → binary PNG masks
 │   ├── check_masks.py              # Visual mask verification
 │   ├── extract_frames.py           # Frame extraction from video
 │   └── reorder_by_prefix.py        # Sequential frame renaming
