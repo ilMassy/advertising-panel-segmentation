@@ -38,6 +38,11 @@ optimizations.
 
 ## ⚙️ Installazione
 
+### ☁️ Google Colab (Consigliato)
+1. Apri `notebooks/Segformer_training.ipynb` su Google Colab
+2. Vai su `Runtime → Change runtime type → T4 GPU`
+3. Esegui le celle in ordine dalla 1 alla 6
+
 ### 💻 Installazione Locale (CPU/GPU)
 
 ```bash
@@ -61,10 +66,13 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 ## 📁 Struttura del Repository
 ```
+
 advertising-panel-segmentation/
 ├── configs/
 │   ├── segformer_b0_baseline.py    # SegFormer-B0 baseline config
 │   └── segformer_b1_standard.py    # SegFormer-B1 standard config
+├── notebooks/
+│   └── Segformer_training.ipynb    # Google Colab training notebook
 ├── src/
 │   ├── extract_frames.py           # Frame extraction from video
 │   ├── reorder_by_prefix.py        # Sequential frame renaming
