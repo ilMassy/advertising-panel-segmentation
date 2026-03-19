@@ -9,7 +9,7 @@ Unlike standard CNN-based approaches, this project employs the SegFormer archite
 
 🚀 Roadmap
 
-[x] Project Structure & Repository Setup: Configurazione ambiente Python 3.10 e MMSegmentation.
+[x] Project Structure & Repository Setup: Configurazione ambiente Python 3.12 e MMSegmentation.
 
 [x] Phase 1: High-Res Dataset Curation: Estrazione frame a 1920x1080 da highlights HD e annotazione poligonale chirurgica su CVAT.ai.
 
