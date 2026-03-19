@@ -1,11 +1,30 @@
 ## Segmentazione Avanzata di Pannelli Pubblicitari (High-Res Transformer Approach)
-🇮🇹 Descrizione del Progetto
-Sviluppo di un sistema di Semantic Segmentation ad alta precisione per l'individuazione di pannelli pubblicitari in ambito broadcast sportivo.
-A differenza degli approcci standard (CNN-based), il progetto adotta l'architettura SegFormer, sfruttando un Hierarchical Transformer Encoder per gestire la coerenza spaziale e la variabilità di risoluzione. L'obiettivo è superare i limiti della bassa risoluzione (640x640) utilizzando un dataset custom a 1080p per garantire la massima precisione sui bordi e nelle condizioni di occlusione critica.
 
-🇬🇧 Project Description
-Development of a high-precision Semantic Segmentation system for advertising board detection in sports broadcasting.
-Unlike standard CNN-based approaches, this project employs the SegFormer architecture, utilizing a Hierarchical Transformer Encoder to manage spatial coherence and resolution variability. The goal is to overcome low-resolution limitations (640x640) by using a custom 1080p dataset to ensure maximum edge precision and robustness under critical occlusion conditions.
+### 🇮🇹 Descrizione del Progetto
+Sviluppo di un sistema di Semantic Segmentation ad alta precisione per 
+l'individuazione di pannelli pubblicitari in ambito broadcast sportivo. 
+A differenza degli approcci standard (CNN-based), il progetto adotta 
+l'architettura SegFormer, sfruttando un Hierarchical Transformer Encoder 
+per gestire la coerenza spaziale e la variabilità di risoluzione. 
+L'obiettivo è superare i limiti della bassa risoluzione (640x640) 
+utilizzando un dataset custom a 1080p (967 immagini annotate manualmente 
+su CVAT.ai) per garantire la massima precisione sui bordi e nelle 
+condizioni di occlusione critica. Il progetto include un confronto 
+sperimentale tra SegFormer-B0 (baseline) e SegFormer-B1 con 
+augmentazioni sport-specific e ottimizzazioni architetturali.
+
+### 🇬🇧 Project Description
+Development of a high-precision Semantic Segmentation system for 
+advertising board detection in sports broadcasting. Unlike standard 
+CNN-based approaches, this project employs the SegFormer architecture, 
+utilizing a Hierarchical Transformer Encoder to manage spatial coherence 
+and resolution variability. The goal is to overcome low-resolution 
+limitations (640x640) by using a custom 1080p dataset (967 manually 
+annotated images via CVAT.ai) to ensure maximum edge precision and 
+robustness under critical occlusion conditions. The project includes 
+an experimental comparison between SegFormer-B0 (baseline) and 
+SegFormer-B1 with sport-specific augmentations and architectural 
+optimizations.
 
 ## 🚀 Roadmap
 
