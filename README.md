@@ -80,6 +80,7 @@ advertising-panel-segmentation/
 │   ├── check_masks.py              # Visual mask verification
 │   ├── extract_frames.py           # Frame extraction from video
 │   └── reorder_by_prefix.py        # Sequential frame renaming
+├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
