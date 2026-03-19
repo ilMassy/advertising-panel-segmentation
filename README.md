@@ -62,13 +62,16 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 ## 📁 Struttura del Repository
 ```
 advertising-panel-segmentation/
+├── configs/
+│   ├── segformer_b0_baseline.py    # SegFormer-B0 baseline config
+│   └── segformer_b1_standard.py    # SegFormer-B1 standard config
 ├── src/
-│   ├── extract_frames.py          # Frame extraction from video
-│   ├── reorder_by_prefix.py       # Sequential frame renaming
-│   ├── CVAT_preparation.py        # COCO JSON → binary PNG masks
-│   └── check_masks.py             # Visual mask verification
-├── models/                        # Trained model checkpoints
-├── results/                       # Training logs and metrics
+│   ├── extract_frames.py           # Frame extraction from video
+│   ├── reorder_by_prefix.py        # Sequential frame renaming
+│   ├── CVAT_preparation.py         # COCO JSON → binary PNG masks
+│   └── check_masks.py              # Visual mask verification
+├── models/                         # Trained model checkpoints
+├── results/                        # Training logs and metrics
 ├── requirements.txt
 └── README.md
 ```
