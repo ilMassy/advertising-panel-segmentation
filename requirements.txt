@@ -1,5 +1,5 @@
 # --- Core Deep Learning ---
-# Stabilized on 2.4.1 for CUDA 12.1 compatibility on WSL2
+# Stabilized on 2.4.1 for CUDA 12.1 compatibility
 torch==2.4.1
 torchvision==0.19.1
 # --- OpenMMLab Stack (SegFormer-B1) ---
