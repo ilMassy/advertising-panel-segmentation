@@ -26,6 +26,66 @@ an experimental comparison between SegFormer-B0 (baseline) and
 SegFormer-B1 with sport-specific augmentations and architectural 
 optimizations.
 
+## 🛠️ Background e Tecniche Utilizzate
+
+- **Architettura**: SegFormer (Mix Transformer Encoder + Lightweight MLP Decoder)
+- **Framework**: PyTorch 2.4.1, MMSegmentation 1.2.2, mmcv 2.2.0
+- **Dataset**: Dataset custom di broadcast sportivo, 967 immagini annotate manualmente a 1920x1080p
+- **Task**: Semantic Segmentation binaria (background vs pannello pubblicitario)
+- **Approccio**: Fine-tuning su pesi pre-addestrati ImageNet (MIT-B0 e MIT-B1)
+
+---
+
+## ⚙️ Installazione
+
+### 💻 Installazione Locale (CPU/GPU)
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/ilMassy/advertising-panel-segmentation
+cd advertising-panel-segmentation
+
+# 2. Create conda environment
+conda create -n boards python=3.10 -y
+conda activate boards
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Fix mmcv version check
+sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
+    $(python -c "import mmseg, os; print(os.path.dirname(mmseg.__file__))")/__init__.py
+```
+
+---
+
+## 📁 Struttura del Repository
+```
+advertising-panel-segmentation/
+├── src/
+│   ├── extract_frames.py          # Frame extraction from video
+│   ├── reorder_by_prefix.py       # Sequential frame renaming
+│   ├── CVAT_preparation.py        # COCO JSON → binary PNG masks
+│   └── check_masks.py             # Visual mask verification
+├── models/                        # Trained model checkpoints
+├── results/                       # Training logs and metrics
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🧪 Esperimenti
+
+| Esperimento | Modello | Augmentation | mIoU | Dice | Precision | Recall |
+|---|---|---|---|---|---|---|
+| Exp0 - Baseline | SegFormer-B0 | Standard | - | - | - | - |
+| Exp1 - Standard | SegFormer-B1 | Standard | - | - | - | - |
+| Exp2 - Augmented | SegFormer-B1 | Sport-specific | - | - | - | - |
+| Exp3 - Optimized | SegFormer-B1 | Sport-specific + custom | - | - | - | - |
+
+---
+
 ## 🚀 Roadmap
 
 - [x] **Project Structure & Repository Setup**: Configurazione ambiente Python 3.10+ e MMSegmentation stack.
