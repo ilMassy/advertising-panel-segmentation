@@ -41,7 +41,7 @@ def check_random_mask(split='train'):
 
     # Save preview
     plt.savefig('mask_check_preview.png')
-    print(f"Preview saved as 'mask_check_preview.png'. Open it from Windows to check!")
+    print(f"Preview saved as 'mask_check_preview.png'!")
     plt.show()
 
 if __name__ == "__main__":
