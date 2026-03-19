@@ -5,25 +5,29 @@ __pycache__/
 env1/
 venv/
 .venv/
+.conda/
+envs/
 
 # === Large Dataset & Media ===
 data/
-!data/processed/data.yaml
-!data/.gitkeep
 *.mp4
 *.zip
 *.tar.gz
 
 # === ML Models & Training Outputs ===
-runs/
+# Pretrained weights (too large for GitHub)
+checkpoints/
+# Training outputs (saved locally or on Colab)
+results/exp*/
+models/*.pth
 models/*.pt
-*.pth
 work_dirs/
-checkpoint/
+runs/
 
-# === Visualizations & Debugging ===
-mask_check_preview.png
+# === Logs & Visualizations ===
 *.log
+mask_check_preview.png
+wandb/
 
 # === System & IDE ===
 .DS_Store
