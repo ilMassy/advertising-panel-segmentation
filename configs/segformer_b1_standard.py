@@ -61,8 +61,14 @@ test_dataloader = val_dataloader
 val_evaluator  = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice'])
 test_evaluator = val_evaluator
 
-# Model: 2 classes
+# Model: 2 classes with pretrained backbone
 model = dict(
+    backbone=dict(
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint='/content/repo/checkpoints/mit_b0_imagenet.pth'
+        )
+    ),
     decode_head=dict(num_classes=2),
     test_cfg=dict(mode='whole')
 )
