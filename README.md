@@ -89,12 +89,12 @@ advertising-panel-segmentation/
 
 ## 🧪 Esperimenti
 
-| Esperimento | Modello | Augmentation | mIoU | Dice | Precision | Recall |
-|---|---|---|---|---|---|---|
-| Exp0 - Baseline | SegFormer-B0 | Standard | - | - | - | - |
-| Exp1 - Standard | SegFormer-B1 | Standard | - | - | - | - |
-| Exp2 - Augmented | SegFormer-B1 | Sport-specific | - | - | - | - |
-| Exp3 - Optimized | SegFormer-B1 | Sport-specific + custom | - | - | - | - |
+| Esperimento | Modello | Augmentation | mIoU | Board IoU | Dice | Precision | Recall |
+|---|---|---|---|---|---|---|---|
+| Exp0 - Baseline | SegFormer-B0 | Standard | - | - | - | - | - |
+| Exp1 - Standard | SegFormer-B1 | Standard | - | - | - | - | - |
+| Exp2 - Augmented | SegFormer-B1 | Sport-specific | - | - | - | - | - |
+| Exp3 - Optimized | SegFormer-B1 | Sport-specific + custom | - | - | - | - | - |
 
 ---
 
