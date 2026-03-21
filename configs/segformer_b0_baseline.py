@@ -68,10 +68,11 @@ model = dict(
     test_cfg=dict(mode='whole')
 )
 
-# AdamW optimizer (standard for Transformers)
+# AdamW optimizer - explicitly override base config to prevent momentum inheritance
+optimizer = dict(type='AdamW', lr=6e-5, betas=(0.9, 0.999), weight_decay=0.01)
 optim_wrapper = dict(
     type='OptimWrapper',
-    optimizer=dict(type='AdamW', lr=6e-5, betas=(0.9, 0.999), weight_decay=0.01),
+    optimizer=optimizer,
     paramwise_cfg=dict(
         custom_keys={
             'pos_block': dict(decay_mult=0.),
