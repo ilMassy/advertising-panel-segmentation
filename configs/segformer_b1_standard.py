@@ -2,7 +2,6 @@
 _base_ = [
     'mmseg::_base_/models/segformer_mit-b1.py',
     'mmseg::_base_/default_runtime.py',
-    'mmseg::_base_/schedules/schedule_160k.py',
 ]
 
 # Dataset settings
