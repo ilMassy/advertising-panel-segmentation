@@ -70,8 +70,8 @@ model = dict(
         bgr_to_rgb=True,
         pad_val=0,
         seg_pad_val=255,
-        size=crop_size,        # explicitly set size
-        size_divisor=None,     # explicitly unset size_divisor
+        size=crop_size,
+        size_divisor=None,
     ),
     backbone=dict(
         init_cfg=dict(
