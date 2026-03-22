@@ -1,6 +1,6 @@
 
 _base_ = [
-    'mmseg::segformer/segformer_mit-b1_8xb2-160k_ade20k-512x512.py',
+    'mmseg::_base_/models/segformer_mit-b0.py',
     'mmseg::_base_/default_runtime.py',
 ]
 
@@ -74,10 +74,17 @@ model = dict(
         size_divisor=None,
     ),
     backbone=dict(
+        embed_dims=64,
+        num_heads=[1, 2, 5, 8],
+        num_layers=[2, 2, 2, 2],
         init_cfg=dict(
             type='Pretrained',
             checkpoint='/content/repo/checkpoints/mit_b1_imagenet.pth'
         )
+    ),
+    decode_head=dict(
+        in_channels=[64, 128, 320, 512],
+        num_classes=2,
     ),
     decode_head=dict(num_classes=2),
     test_cfg=dict(mode='whole')
