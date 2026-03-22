@@ -61,7 +61,8 @@ test_dataloader = val_dataloader
 val_evaluator  = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice'])
 test_evaluator = val_evaluator
 
-# Model: 2 classes with pretrained backbone
+# Model: SegFormer-B1 architecture (larger than B0)
+# B1: embed_dims=64, vs B0: embed_dims=32
 model = dict(
     data_preprocessor=dict(
         type='SegDataPreProcessor',
@@ -86,7 +87,6 @@ model = dict(
         in_channels=[64, 128, 320, 512],
         num_classes=2,
     ),
-    decode_head=dict(num_classes=2),
     test_cfg=dict(mode='whole')
 )
 
