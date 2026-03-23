@@ -91,8 +91,8 @@ advertising-panel-segmentation/
 
 | Esperimento | Modello | Augmentation | mIoU | Board IoU | Dice | Precision | Recall |
 |---|---|---|---|---|---|---|---|
-| Exp0 - Baseline | SegFormer-B0 | Standard | - | - | - | - | - |
-| Exp1 - Standard | SegFormer-B1 | Standard | - | - | - | - | - |
+| Exp0 - Baseline | SegFormer-B0 | Standard | 87.77% | 78.09% | 87.70% | 83.15% | 92.77% |
+| Exp1 - Standard | SegFormer-B1 | Standard | 88.90% | 80.01% | 88.89% | 87.67% | 90.15% |
 | Exp2 - Augmented | SegFormer-B1 | Sport-specific | - | - | - | - | - |
 | Exp3 - Optimized | SegFormer-B1 | Sport-specific + custom | - | - | - | - | - |
 
@@ -106,7 +106,7 @@ advertising-panel-segmentation/
 
 - [x] **Phase 2 - Baseline SegFormer-B0**: Addestramento del modello leggero B0 per stabilire il benchmark di riferimento (IoU, Dice, Precision, Recall).
 
-- [ ] **Phase 3 - SegFormer-B1 Standard**: Fine-tuning di B1 sul dataset custom e confronto quantitativo con la baseline B0.
+- [x] **Phase 3 - SegFormer-B1 Standard**: Fine-tuning di B1 sul dataset custom e confronto quantitativo con la baseline B0.
 
 - [ ] **Phase 4 - Domain-Specific Augmentation**: Implementazione di tecniche sport-specific per simulare Motion Blur, Occlusion Cutout e Color Jitter per migliorare la robustezza del modello.
 
