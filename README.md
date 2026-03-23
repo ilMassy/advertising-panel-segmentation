@@ -71,11 +71,13 @@ advertising-panel-segmentation/
 ├── configs/
 │   ├── segformer_b0_baseline.py    # SegFormer-B0 baseline config
 │   └── segformer_b1_standard.py    # SegFormer-B1 standard config
-├── models/                         # Trained model checkpoints
+├── models/                         
 │   └── README.md                   # Performance summary of SegFormer-B0 and B1 models
 ├── notebooks/
 │   └── Segformer_training.ipynb    # Google Colab training notebook
-├── results/                        # Training logs and metrics
+├── results/                        
+│   ├── exp0_segformer_b0_baseline  # SegFormer-B0 baseline training logs
+│   └── exp1_segformer_b1_standard  # SegFormer-B0 standard training logs
 ├── src/
 │   ├── CVAT_preparation.py         # COCO JSON → binary PNG masks
 │   ├── check_masks.py              # Visual mask verification
