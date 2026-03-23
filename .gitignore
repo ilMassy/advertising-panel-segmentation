@@ -25,7 +25,6 @@ work_dirs/
 runs/
 
 # === Logs & Visualizations ===
-*.log
 mask_check_preview.png
 wandb/
 
