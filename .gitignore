@@ -18,7 +18,9 @@ data/
 # Pretrained weights (too large for GitHub)
 checkpoints/
 # Training outputs (saved locally or on Colab)
-results/exp*/
+results/**/checkpoint/     # Ignore checkpoints
+results/**/*.pth           # Ignore model weights (too large)
+results/**/*.pt
 models/*.pth
 models/*.pt
 work_dirs/
