@@ -72,6 +72,7 @@ advertising-panel-segmentation/
 │   ├── segformer_b0_baseline.py    # SegFormer-B0 baseline config
 │   └── segformer_b1_standard.py    # SegFormer-B1 standard config
 ├── models/                         # Trained model checkpoints
+│   └── README.md                   
 ├── notebooks/
 │   └── Segformer_training.ipynb    # Google Colab training notebook
 ├── results/                        # Training logs and metrics
