@@ -15,19 +15,13 @@ data/
 *.tar.gz
 
 # === ML Models & Training Outputs ===
-# Ignore ALL weight files regardless of where they are
 *.pth
 *.pt
 *.pkl
 *.checkpoint
 last_checkpoint
-
-# Specific ignore rules for OpenMMLab/MMSeg structures
 work_dirs/
 checkpoints/
-
-# Ignore heavy subfolders in results but ALLOW the results folder itself
-# This way .log, .json and .py files inside results/exp* will be tracked
 results/**/checkpoint/
 results/**/vis_data/vis_image/
 
