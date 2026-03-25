@@ -114,7 +114,7 @@ model = dict(
         drop_path_rate=0.2,         # was 0.1
         init_cfg=dict(
             type='Pretrained',
-            checkpoint='/content/repo/checkpoints/mit_b1_imagenet.pth'
+            checkpoint='/content/checkpoints/mit_b1_imagenet.pth'
         )
     ),
     decode_head=dict(
