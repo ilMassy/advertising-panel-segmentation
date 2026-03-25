@@ -43,12 +43,12 @@ optimizations.
 #### Phase 1-3: Baseline e SegFormer-B1 Standard
 1. Apri `notebooks/Segformer_training.ipynb` su Google Colab
 2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
-3. Esegui le celle in ordine dalla 1 alla 13
+3. Esegui le celle in ordine dalla 1 alla 11
 
 #### Phase 4: Augmentazione Sport-Specific
 1. Apri `notebooks/Segformer_augmented.ipynb` su Google Colab
 2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
-3. Esegui le celle in ordine dalla 1 alla 10
+3. Esegui le celle in ordine dalla 1 alla 11
 
 ### 💻 Installazione Locale (CPU/GPU)
 
