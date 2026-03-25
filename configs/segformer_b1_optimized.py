@@ -108,10 +108,9 @@ model = dict(
         embed_dims=64,
         num_heads=[1, 2, 5, 8],
         num_layers=[2, 2, 2, 2],
-        # Local attention for oblique edges (perspective panels)
-        sr_ratios=[4, 2, 1, 1],    # was [8, 4, 2, 1]
         # Stochastic depth regularization
         drop_path_rate=0.2,         # was 0.1
+        # sr_ratios removed → keeps default [8,4,2,1] compatible with pretrained weights
         init_cfg=dict(
             type='Pretrained',
             checkpoint='/content/checkpoints/mit_b1_imagenet.pth'
