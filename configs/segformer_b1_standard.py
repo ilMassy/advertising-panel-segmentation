@@ -20,7 +20,7 @@ train_pipeline = [
     dict(type='PackSegInputs'),
 ]
 
-# Validation pipeline
+# Validation/Test pipeline (no augmentation)
 val_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='Resize', scale=(1920, 1080), keep_ratio=True),
@@ -55,11 +55,20 @@ val_dataloader = dict(
     )
 )
 
-test_dataloader = val_dataloader
+# Test set separated from validation
+test_dataloader = dict(
+    batch_size=1, num_workers=2,
+    dataset=dict(
+        type=dataset_type, data_root=data_root,
+        data_prefix=dict(img_path='test/images', seg_map_path='test/masks'),
+        img_suffix='.jpeg', seg_map_suffix='.png',
+        metainfo=meta, pipeline=val_pipeline,
+    )
+)
 
 # Evaluation metrics
 val_evaluator  = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice'])
-test_evaluator = val_evaluator
+test_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice', 'mFscore'])
 
 # Model: SegFormer-B1 architecture (larger than B0)
 # B1: embed_dims=64, vs B0: embed_dims=32

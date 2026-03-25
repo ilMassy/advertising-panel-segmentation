@@ -9,7 +9,7 @@ dataset_type = 'BaseSegDataset'
 data_root    = '/content/processed/'
 crop_size    = (640, 640)
 
-# Training pipeline
+# Training pipeline with sport-specific augmentations
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
@@ -17,6 +17,34 @@ train_pipeline = [
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
     dict(type='RandomFlip', prob=0.5),
     dict(type='PhotoMetricDistortion'),
+    # Sport-specific augmentations via albumentations
+    dict(
+        type='Albu',
+        transforms=[
+            # Motion Blur: simulates camera panning during match
+            dict(type='MotionBlur', blur_limit=9, p=0.4),
+            # Gaussian Noise: simulates broadcast video compression
+            dict(type='GaussNoise', var_limit=(10.0, 50.0), p=0.3),
+            # Color Jitter: simulates stadium lighting variations
+            dict(type='RandomBrightnessContrast',
+                 brightness_limit=0.3,
+                 contrast_limit=0.3, p=0.4),
+            # Color Jitter: simulates different cameras and artificial lights
+            dict(type='HueSaturationValue',
+                 hue_shift_limit=20,
+                 sat_shift_limit=30,
+                 val_shift_limit=20, p=0.3),
+            # Occlusion Cutout: simulates players occluding the board
+            dict(type='CoarseDropout',
+                 max_holes=6,
+                 max_height=80,
+                 max_width=80,
+                 min_holes=1,
+                 fill_value=0, p=0.3),
+        ],
+        keymap={'img': 'image', 'gt_semantic_seg': 'mask'},
+        update_pad_shape=False,
+    ),
     dict(type='PackSegInputs'),
 ]
 
@@ -55,7 +83,7 @@ val_dataloader = dict(
     )
 )
 
-# Test set separated from validation
+# Test set sepeared from validation
 test_dataloader = dict(
     batch_size=1, num_workers=2,
     dataset=dict(
@@ -70,7 +98,7 @@ test_dataloader = dict(
 val_evaluator  = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice'])
 test_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice', 'mFscore'])
 
-# Model: 2 classes with pretrained backbone
+# Model: SegFormer-B1 architecture
 model = dict(
     data_preprocessor=dict(
         type='SegDataPreProcessor',
@@ -83,16 +111,22 @@ model = dict(
         size_divisor=None,
     ),
     backbone=dict(
+        embed_dims=64,
+        num_heads=[1, 2, 5, 8],
+        num_layers=[2, 2, 2, 2],
         init_cfg=dict(
             type='Pretrained',
-            checkpoint='/content/repo/checkpoints/mit_b0_imagenet.pth'
+            checkpoint='/content/repo/checkpoints/mit_b1_imagenet.pth'
         )
     ),
-    decode_head=dict(num_classes=2),
+    decode_head=dict(
+        in_channels=[64, 128, 320, 512],
+        num_classes=2,
+    ),
     test_cfg=dict(mode='whole')
 )
 
-# AdamW optimizer - explicitly override base config to prevent momentum inheritance
+# AdamW optimizer
 optimizer = dict(type='AdamW', lr=6e-5, betas=(0.9, 0.999), weight_decay=0.01)
 optim_wrapper = dict(
     type='OptimWrapper',
@@ -109,7 +143,7 @@ optim_wrapper = dict(
 # LR scheduler with warmup
 param_scheduler = [
     dict(type='LinearLR', start_factor=1e-6, by_epoch=False, begin=0,    end=1500),
-    dict(type='PolyLR',   eta_min=0.0,       power=1.0,      begin=1500, end=160000, by_epoch=False),
+    dict(type='PolyLR',   eta_min=0.0,       power=1.0,      begin=1500, end=20000, by_epoch=False),
 ]
 
 # Save best checkpoint based on mIoU
