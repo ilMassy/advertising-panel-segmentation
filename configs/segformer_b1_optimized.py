@@ -125,7 +125,6 @@ model = dict(
         # Dice Loss + Cross Entropy for background/board imbalance
         loss_decode=[
             dict(type='CrossEntropyLoss', loss_weight=1.0, use_sigmoid=False),
-            dict(type='DiceLoss',         loss_weight=3.0),
         ],
     ),
     test_cfg=dict(mode='whole')
