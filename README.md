@@ -76,21 +76,23 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 advertising-panel-segmentation/
 ├── configs/
-│   ├── segformer_b0_baseline.py    # SegFormer-B0 baseline config
-│   └── segformer_b1_standard.py    # SegFormer-B1 standard config
+│   ├── segformer_b0_baseline.py     # SegFormer-B0 baseline config
+│   ├── segformer_b1_augmented.py    # SegFormer-B1 augmented config
+│   └── segformer_b1_standard.py     # SegFormer-B1 standard config
 ├── models/                         
-│   └── README.md                   # Performance summary of SegFormer-B0 and B1 models
+│   └── README.md                    # Performance summary of models used
 ├── notebooks/
-│   ├── Segformer_augmented.ipynb   # Google Colab augmented training notebook (Phase 4)
-│   ├── Segformer_training.ipynb    # Google Colab training notebook (Phase 1-3)
+│   ├── Segformer_augmented.ipynb    # Google Colab augmented training notebook (Phase 4)
+│   └── Segformer_training.ipynb     # Google Colab training notebook (Phase 1-3)
 ├── results/                        
-│   ├── exp0_segformer_b0_baseline  # SegFormer-B0 baseline training logs
-│   └── exp1_segformer_b1_standard  # SegFormer-B1 standard training logs
+│   ├── exp0_segformer_b0_baseline   # SegFormer-B0 baseline training logs
+│   ├── exp1_segformer_b1_standard   # SegFormer-B1 standard training logs
+│   └── exp2_segformer_b1_augmented  # SegFormer-B1 augmented training logs
 ├── src/
-│   ├── CVAT_preparation.py         # COCO JSON → binary PNG masks
-│   ├── check_masks.py              # Visual mask verification
-│   ├── extract_frames.py           # Frame extraction from video
-│   └── reorder_by_prefix.py        # Sequential frame renaming
+│   ├── CVAT_preparation.py          # COCO JSON → binary PNG masks
+│   ├── check_masks.py               # Visual mask verification
+│   ├── extract_frames.py            # Frame extraction from video
+│   └── reorder_by_prefix.py         # Sequential frame renaming
 ├── .gitignore
 ├── README.md
 └── requirements.txt
