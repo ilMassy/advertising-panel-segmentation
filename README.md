@@ -91,9 +91,9 @@ advertising-panel-segmentation/
 
 | Esperimento | Modello | Augmentation | mIoU | Board IoU | Dice | Precision | Recall |
 |---|---|---|---|---|---|---|---|
-| Exp0 - Baseline | SegFormer-B0 | Standard | 87.77% | 78.09% | 87.70% | 83.15% | 92.77% |
-| Exp1 - Standard | SegFormer-B1 | Standard | 88.90% | 80.01% | 88.89% | 87.67% | 90.15% |
-| Exp2 - Augmented | SegFormer-B1 | Sport-specific | - | - | - | - | - |
+| Exp0 - Baseline | SegFormer-B0 | Standard | 87.15% | 76.28% | 86.55% | 84.13% | 89.10% |
+| Exp1 - Standard | SegFormer-B1 | Standard | 84.29% | 71.12% | 83.12% | 79.26% | 87.39% |
+| Exp2 - Augmented | SegFormer-B1 | Sport-specific | 87.26% | 76.45% | 86.66% | 85.76% | 87.57% |
 | Exp3 - Optimized | SegFormer-B1 | Sport-specific + custom | - | - | - | - | - |
 
 ---
