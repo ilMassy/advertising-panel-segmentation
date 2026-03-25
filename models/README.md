@@ -2,18 +2,27 @@
 
 ## Exp0 - SegFormer-B0 Baseline
 - Best checkpoint: best_mIoU_iter_18000.pth
-- mIoU: 87.77%
-- board IoU: 78.09%
-- Dice: 87.70%
-- Precision: 83.15%
-- Recall: 92.77%
+- mIoU: 87.15%
+- board IoU: 76.28%
+- Dice: 86.55%
+- Precision: 84.13%
+- Recall: 89.10%
 - Stored on: Google Drive
 
 ## Exp1 - SegFormer-B1 Standard
-- Best checkpoint: best_mIoU_iter_6000.pth
-- mIoU: 88.90%
-- board IoU: 80.01%
-- Dice: 88.89%
-- Precision: 87.67%
-- Recall: 90.15%
+- Best checkpoint: best_mIoU_iter_10000.pth
+- mIoU: 84.29%
+- board IoU: 71.12%
+- Dice: 83.12%
+- Precision: 79.26%
+- Recall: 87.39%
+- Stored on: Google Drive
+
+## Exp2 - SegFormer-B1 Augmented
+- Best checkpoint: best_mIoU_iter_14000.pth
+- mIoU: 87.26%
+- board IoU: 76.45%
+- Dice: 86.66%
+- Precision: 85.76%
+- Recall: 87.57%
 - Stored on: Google Drive
