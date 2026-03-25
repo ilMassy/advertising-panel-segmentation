@@ -17,3 +17,12 @@
 - Precision: 79.26%
 - Recall: 87.39%
 - Stored on: Google Drive
+
+## Exp2 - SegFormer-B1 Augmented
+- Best checkpoint: best_mIoU_iter_14000.pth
+- mIoU: 87.26%
+- board IoU: 76.45%
+- Dice: 86.66%
+- Precision: 85.76%
+- Recall: 87.57%
+- Stored on: Google Drive
