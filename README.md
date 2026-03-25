@@ -39,9 +39,16 @@ optimizations.
 ## ⚙️ Installazione
 
 ### ☁️ Google Colab (Consigliato)
+
+#### Phase 1-3: Baseline e SegFormer-B1 Standard
 1. Apri `notebooks/Segformer_training.ipynb` su Google Colab
 2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
-3. Esegui le celle in ordine dalla 1 alla 6
+3. Esegui le celle in ordine dalla 1 alla 13
+
+#### Phase 4: Augmentazione Sport-Specific
+1. Apri `notebooks/Segformer_augmented.ipynb` su Google Colab
+2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
+3. Esegui le celle in ordine dalla 1 alla 10
 
 ### 💻 Installazione Locale (CPU/GPU)
 
@@ -74,7 +81,8 @@ advertising-panel-segmentation/
 ├── models/                         
 │   └── README.md                   # Performance summary of SegFormer-B0 and B1 models
 ├── notebooks/
-│   └── Segformer_training.ipynb    # Google Colab training notebook
+│   ├── Segformer_augmented.ipynb   # Google Colab augmented training notebook (Phase 4)
+│   ├── Segformer_training.ipynb    # Google Colab training notebook (Phase 1-3)
 ├── results/                        
 │   ├── exp0_segformer_b0_baseline  # SegFormer-B0 baseline training logs
 │   └── exp1_segformer_b1_standard  # SegFormer-B1 standard training logs
