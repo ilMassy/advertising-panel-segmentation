@@ -13,7 +13,7 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 | Exp0 - B0 Baseline | best_mIoU_iter_18000.pth | **88.84%** | **79.95%** | 92.30% | **93.86%** |
 | Exp1 - B1 Standard | best_mIoU_iter_10000.pth | 88.36% | 79.09% | 92.01% | 93.56% |
 | **Exp2 - B1 Augmented** | best_mIoU_iter_14000.pth | 87.95% | 78.33% | 90.57% | 93.31% |
-| Exp3 - Optimized1 | best_mIoU_iter_14000.pth | 86.65% | 76.15% | 92.79% | 92.51% |
+| Exp3 - Optimized | best_mIoU_iter_14000.pth | 86.65% | 76.15% | 92.79% | 92.51% |
 | Exp3 - Optimized2 | best_mIoU_iter_12000.pth | 86.91% | 76.55% | 91.17% | 92.67% |
 | Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 88.20% | 78.87% | **94.18%** | 93.47% |
 
@@ -26,7 +26,7 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 | Exp0 - B0 Baseline | best_mIoU_iter_18000.pth | 87.15% | 76.28% | 86.55% | 84.13% | 89.10% |
 | Exp1 - B1 Standard | best_mIoU_iter_10000.pth | 84.29% | 71.12% | 83.12% | 79.26% | 87.39% |
 | **Exp2 - B1 Augmented** ⭐ | best_mIoU_iter_14000.pth | **87.26%** | **76.45%** | **86.66%** | **85.76%** | 87.57% |
-| Exp3 - Optimized1 | best_mIoU_iter_14000.pth | 84.58% | 71.68% | 83.51% | 78.66% | 88.99% |
+| Exp3 - Optimized | best_mIoU_iter_14000.pth | 84.58% | 71.68% | 83.51% | 78.66% | 88.99% |
 | Exp3 - Optimized2 | best_mIoU_iter_12000.pth | 84.92% | 72.26% | 83.90% | 80.40% | 87.71% |
 | Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 86.42% | 74.99% | 85.71% | 82.25% | **89.47%** |
 
@@ -39,7 +39,7 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 | Exp0 - B0 Baseline | **88.84%** | 87.15% | -1.69% |
 | Exp1 - B1 Standard | 88.36% | 84.29% | -4.07% |
 | **Exp2 - B1 Augmented** ⭐ | 87.95% | **87.26%** | **-0.69%** |
-| Exp3 - Optimized1 | 86.65% | 84.58% | -2.07% |
+| Exp3 - Optimized | 86.65% | 84.58% | -2.07% |
 | Exp3 - Optimized2 | 86.91% | 84.92% | -1.99% |
 | Exp3 - Optimized3 | 88.20% | 86.42% | -1.78% |
 
