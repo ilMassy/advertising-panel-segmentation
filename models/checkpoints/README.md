@@ -10,12 +10,12 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 
 | Experiment | Best Checkpoint | mIoU | Board IoU | Board Acc | mDice |
 |---|---|---|---|---|---|
-| Exp0 - B0 Baseline | best_mIoU_iter_18000.pth | 88.84% | 79.95% | 92.30% | 93.86% |
+| Exp0 - B0 Baseline | best_mIoU_iter_18000.pth | **88.84%** | **79.95%** | 92.30% | **93.86%** |
 | Exp1 - B1 Standard | best_mIoU_iter_10000.pth | 88.36% | 79.09% | 92.01% | 93.56% |
 | **Exp2 - B1 Augmented** | best_mIoU_iter_14000.pth | 87.95% | 78.33% | 90.57% | 93.31% |
 | Exp3 - Optimized1 | best_mIoU_iter_14000.pth | 86.65% | 76.15% | 92.79% | 92.51% |
 | Exp3 - Optimized2 | best_mIoU_iter_12000.pth | 86.91% | 76.55% | 91.17% | 92.67% |
-| Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 88.20% | 78.87% | 94.18% | 93.47% |
+| Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 88.20% | 78.87% | **94.18%** | 93.47% |
 
 ---
 
