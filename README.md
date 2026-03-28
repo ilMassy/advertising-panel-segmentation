@@ -55,7 +55,7 @@ optimizations.
 #### Phase 5: Architectural Optimization
 1. Apri `notebooks/Segformer_optimized*.ipynb` su Google Colab
 2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
-3. Esegui le celle in ordine dalla 1 alla 10
+3. Esegui le celle in ordine dalla 1 alla 11
 
 ### 💻 Installazione Locale (CPU/GPU)
 ```bash
