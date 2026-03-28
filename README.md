@@ -81,12 +81,12 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 ```
 advertising-panel-segmentation/
 ├── configs/
-│   ├── segformer_b0_baseline.py          # SegFormer-B0 baseline config
+│   ├── segformer_b0_baseline.py          # SegFormer-B0 baseline config (Phase 2)
 │   ├── segformer_b1_augmented.py         # SegFormer-B1 augmented config (Phase 4)
 │   ├── segformer_b1_optimized.py         # SegFormer-B1 optimized config (Phase 5 - opt1)
 │   ├── segformer_b1_optimized2.py        # SegFormer-B1 optimized config (Phase 5 - opt2)
 │   ├── segformer_b1_optimized3.py        # SegFormer-B1 optimized config (Phase 5 - opt3)
-│   └── segformer_b1_standard.py          # SegFormer-B1 standard config
+│   └── segformer_b1_standard.py          # SegFormer-B1 standard config (Phase 3)
 ├── models/
 │   ├── checkpoints/
 │   │	└── README.md                     # Checkpoints summary of trained models and technical analysis
