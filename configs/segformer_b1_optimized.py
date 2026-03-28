@@ -20,8 +20,8 @@ train_pipeline = [
     dict(
         type='Albu',
         transforms=[
-            dict(type='MotionBlur', blur_limit=9, p=0.4),
-            dict(type='GaussNoise', var_limit=(10.0, 50.0), p=0.3),
+            dict(type='MotionBlur', blur_limit=5, p=0.3),
+            dict(type='GaussNoise', var_limit=(5, 30), p=0.2),
             dict(type='RandomBrightnessContrast',
                  brightness_limit=0.3,
                  contrast_limit=0.3, p=0.4),
@@ -30,11 +30,11 @@ train_pipeline = [
                  sat_shift_limit=30,
                  val_shift_limit=20, p=0.3),
             dict(type='CoarseDropout',
-                 max_holes=6,
-                 max_height=80,
-                 max_width=80,
+                 max_holes=4,
+                 max_height=60,
+                 max_width=60,
                  min_holes=1,
-                 fill_value=0, p=0.3),
+                 fill_value=0, p=0.25),
         ],
         keymap={'img': 'image', 'gt_semantic_seg': 'mask'},
         update_pad_shape=False,
@@ -92,7 +92,8 @@ test_dataloader = dict(
 val_evaluator  = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice'])
 test_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU', 'mDice', 'mFscore'])
 
-# Model: SegFormer-B1 with architectural optimizations
+# Model: SegFormer-B1
+# Only change: LR 3e-5 instead of 6e-5
 model = dict(
     data_preprocessor=dict(
         type='SegDataPreProcessor',
@@ -108,9 +109,7 @@ model = dict(
         embed_dims=64,
         num_heads=[1, 2, 5, 8],
         num_layers=[2, 2, 2, 2],
-        # Stochastic depth regularization
-        drop_path_rate=0.2,         # was 0.1
-        # sr_ratios removed → keeps default [8,4,2,1] compatible with pretrained weights
+        drop_path_rate=0.1,
         init_cfg=dict(
             type='Pretrained',
             checkpoint='/content/checkpoints/mit_b1_imagenet.pth'
@@ -119,18 +118,18 @@ model = dict(
     decode_head=dict(
         in_channels=[64, 128, 320, 512],
         num_classes=2,
-        # Higher capacity for perspective panel shapes
-        channels=512,               # was 256
-        dropout_ratio=0.2,          # was 0.1
-        # Dice Loss + Cross Entropy for background/board imbalance
-        loss_decode=[
-            dict(type='CrossEntropyLoss', loss_weight=1.0, use_sigmoid=False),
-        ],
+        channels=512,
+        dropout_ratio=0.1,
+        loss_decode=dict(
+            type='CrossEntropyLoss',
+            loss_weight=1.0,
+            use_sigmoid=False
+        ),
     ),
     test_cfg=dict(mode='whole')
 )
 
-# AdamW optimizer with lower LR for stable convergence
+# AdamW optimizer - lower LR for stable convergence (only architectural change)
 optimizer = dict(type='AdamW', lr=3e-5, betas=(0.9, 0.999), weight_decay=0.01)
 optim_wrapper = dict(
     type='OptimWrapper',
@@ -150,7 +149,7 @@ param_scheduler = [
     dict(type='PolyLR',   eta_min=0.0,       power=1.0,      begin=1500, end=20000, by_epoch=False),
 ]
 
-# Checkpoint saving + logger
+# Save best checkpoint based on mIoU
 default_hooks = dict(
     checkpoint=dict(type='CheckpointHook', by_epoch=False, interval=2000,
                     max_keep_ckpts=3, save_best='mIoU', rule='greater'),
@@ -158,7 +157,6 @@ default_hooks = dict(
 )
 
 # Early stopping: stop if val mIoU does not improve for 5 consecutive validations
-# with val_interval=2000 and max_iters=20000 → patience=5 means 10000 iters without improvement
 custom_hooks = [
     dict(
         type='EarlyStoppingHook',
