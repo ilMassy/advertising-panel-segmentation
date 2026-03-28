@@ -88,6 +88,8 @@ advertising-panel-segmentation/
 │   ├── segformer_b1_optimized3.py        # SegFormer-B1 optimized config (Phase 5 - opt3)
 │   └── segformer_b1_standard.py          # SegFormer-B1 standard config
 ├── models/
+│   ├── checkpoints/
+│   │	└── README.md                     # Checkpoints summary of trained models and technical analysis
 │   └── README.md                         # Performance summary of trained models
 ├── notebooks/
 │   ├── Segformer_augmented.ipynb         # Training notebook Phase 4
