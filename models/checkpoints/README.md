@@ -28,7 +28,7 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 | **Exp2 - B1 Augmented** ⭐ | best_mIoU_iter_14000.pth | **87.26%** | **76.45%** | **86.66%** | **85.76%** | 87.57% |
 | Exp3 - Optimized1 | best_mIoU_iter_14000.pth | 84.58% | 71.68% | 83.51% | 78.66% | 88.99% |
 | Exp3 - Optimized2 | best_mIoU_iter_12000.pth | 84.92% | 72.26% | 83.90% | 80.40% | 87.71% |
-| Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 86.42% | 74.99% | 85.71% | 82.25% | 89.47% |
+| Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 86.42% | 74.99% | 85.71% | 82.25% | **89.47%** |
 
 ---
 
