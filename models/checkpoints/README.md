@@ -36,7 +36,7 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 
 | Experiment | Val mIoU | Test mIoU | Gap |
 |---|---|---|---|
-| Exp0 - B0 Baseline | 88.84% | 87.15% | -1.69% |
+| Exp0 - B0 Baseline | **88.84%** | 87.15% | -1.69% |
 | Exp1 - B1 Standard | 88.36% | 84.29% | -4.07% |
 | **Exp2 - B1 Augmented** ⭐ | 87.95% | **87.26%** | **-0.69%** |
 | Exp3 - Optimized1 | 86.65% | 84.58% | -2.07% |
