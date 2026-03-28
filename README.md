@@ -53,7 +53,7 @@ optimizations.
 3. Esegui le celle in ordine dalla 1 alla 11
 
 #### Phase 5: Architectural Optimization
-1. Apri `notebooks/Segformer_optimized.ipynb` su Google Colab
+1. Apri `notebooks/Segformer_optimized*.ipynb` su Google Colab
 2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
 3. Esegui le celle in ordine dalla 1 alla 10
 
@@ -82,24 +82,27 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 advertising-panel-segmentation/
 ├── configs/
 │   ├── segformer_b0_baseline.py          # SegFormer-B0 baseline config
-│   ├── segformer_b1_standard.py          # SegFormer-B1 standard config
 │   ├── segformer_b1_augmented.py         # SegFormer-B1 augmented config (Phase 4)
 │   ├── segformer_b1_optimized.py         # SegFormer-B1 optimized config (Phase 5 - opt1)
 │   ├── segformer_b1_optimized2.py        # SegFormer-B1 optimized config (Phase 5 - opt2)
-│   └── segformer_b1_optimized3.py        # SegFormer-B1 optimized config (Phase 5 - opt3)
+│   ├── segformer_b1_optimized3.py        # SegFormer-B1 optimized config (Phase 5 - opt3)
+│   └── segformer_b1_standard.py          # SegFormer-B1 standard config
 ├── models/
 │   └── README.md                         # Performance summary of trained models
 ├── notebooks/
-│   ├── Segformer_training.ipynb          # Training notebook Phase 1-3
 │   ├── Segformer_augmented.ipynb         # Training notebook Phase 4
-│   └── Segformer_optimized.ipynb         # Training notebook Phase 5
+│   ├── Segformer_optimized.ipynb         # Training notebook Phase 5 opt1
+│   ├── Segformer_optimized2.ipynb        # Training notebook Phase 5 opt2
+│   ├── Segformer_optimized3.ipynb        # Training notebook Phase 5 opt3
+│   ├── Segformer_training.ipynb          # Training notebook Phase 1-3
+│   └── Upload_to_HuggingFace.ipynb       # Upload models and datasets to Hugging Face
 ├── results/
 │   ├── exp0_segformer_b0_baseline/       # SegFormer-B0 baseline training logs
 │   ├── exp1_segformer_b1_standard/       # SegFormer-B1 standard training logs
 │   ├── exp2_segformer_b1_augmented/      # SegFormer-B1 augmented training logs
 │   ├── exp3_segformer_b1_optimized/      # SegFormer-B1 optimized training logs (opt1)
-│   ├── exp3_segformer_b1_optimized2/     # SegFormer-B1 optimized training logs (opt2)
-│   └── exp3_segformer_b1_optimized3/     # SegFormer-B1 optimized training logs (opt3)
+│   ├── exp3_segformer_b1_optimized2/     # SegFormer-B1 optimized2 training logs (opt2)
+│   └── exp3_segformer_b1_optimized3/     # SegFormer-B1 optimized3 training logs (opt3)
 ├── src/
 │   ├── CVAT_preparation.py               # COCO JSON → binary PNG masks
 │   ├── check_masks.py                    # Visual mask verification
@@ -113,7 +116,6 @@ advertising-panel-segmentation/
 ---
 
 ## 🧪 Esperimenti
-
 | Esperimento | Modello | Augmentation | mIoU | Board IoU | Dice | Precision | Recall |
 |---|---|---|---|---|---|---|---|
 | Exp0 - Baseline | SegFormer-B0 | Standard | 87.15% | 76.28% | 86.55% | 84.13% | 89.10% |
