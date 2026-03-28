@@ -127,6 +127,13 @@ advertising-panel-segmentation/
 | Exp3 - Optimized2 | SegFormer-B1 | Sport-specific reduced + LR 3e-5 + ch=256 | 84.92% | 72.26% | 83.90% | 80.40% | 87.71% |
 | Exp3 - Optimized3 | SegFormer-B1 | Sport-specific + drop_path=0.15 | 86.42% | 74.99% | 85.71% | 82.25% | 89.47% |
 
+> **Nota**: È stato effettuato un ulteriore tentativo con augmentazioni ancora più aggressive
+> (CoarseDropout max_holes=10 p=0.6, GridDistortion, OpticalDistortion, ImageCompression),
+> interrotto anticipatamente a causa di prestazioni sul validation set significativamente
+> inferiori rispetto all'Augmented standard. I risultati parziali hanno confermato il trend
+> già osservato: augmentazioni troppo aggressive degradano la generalizzazione su dataset
+> di dimensioni ridotte.
+
 > **Best model**: Exp2 - SegFormer-B1 Augmented con augmentazioni sport-specific bilanciate.
 > Modelli e dataset disponibili su 🤗 [Hugging Face](https://huggingface.co/ilMassy/advertising-panel-segmentation)
 
