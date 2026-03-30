@@ -89,30 +89,36 @@ advertising-panel-segmentation/
 │   └── segformer_b1_standard.py          # SegFormer-B1 standard config (Phase 3)
 ├── models/
 │   ├── checkpoints/
-│   │	└── README.md                     # Checkpoints summary of trained models and technical analysis
+│   │   └── README.md                     # Val + Test results and Val→Test gap analysis
 │   └── README.md                         # Performance summary of trained models
 ├── notebooks/
+│   ├── Segformer_analysis.ipynb          # Critical analysis notebook Phase 6
 │   ├── Segformer_augmented.ipynb         # Training notebook Phase 4
-│   ├── Segformer_optimized.ipynb         # Training notebook Phase 5 opt1
-│   ├── Segformer_optimized2.ipynb        # Training notebook Phase 5 opt2
-│   ├── Segformer_optimized3.ipynb        # Training notebook Phase 5 opt3
-│   ├── Segformer_training.ipynb          # Training notebook Phase 1-3
-│   └── Upload_to_HuggingFace.ipynb       # Upload models and datasets to Hugging Face
+│   ├── Segformer_optimized.ipynb         # Training notebook Phase 5 - opt1
+│   ├── Segformer_optimized2.ipynb        # Training notebook Phase 5 - opt2
+│   ├── Segformer_optimized3.ipynb        # Training notebook Phase 5 - opt3
+│   ├── Segformer_training.ipynb          # Training notebook Phase 2-3
+│   └── Upload_to_HuggingFace.ipynb       # Upload models and dataset to Hugging Face
 ├── results/
 │   ├── exp0_segformer_b0_baseline/       # SegFormer-B0 baseline training logs
 │   ├── exp1_segformer_b1_standard/       # SegFormer-B1 standard training logs
 │   ├── exp2_segformer_b1_augmented/      # SegFormer-B1 augmented training logs
 │   ├── exp3_segformer_b1_optimized/      # SegFormer-B1 optimized training logs (opt1)
-│   ├── exp3_segformer_b1_optimized2/     # SegFormer-B1 optimized2 training logs (opt2)
-│   └── exp3_segformer_b1_optimized3/     # SegFormer-B1 optimized3 training logs (opt3)
+│   ├── exp3_segformer_b1_optimized2/     # SegFormer-B1 optimized training logs (opt2)
+│   ├── exp3_segformer_b1_optimized3/     # SegFormer-B1 optimized training logs (opt3)
+│   ├── attention_maps_comparison.png     # Attention maps: B0 vs B1 Standard vs B1 Augmented
+│   ├── benchmarking_complete.png         # All 6 models Val vs Test mIoU, Val→Test gap, Precision vs Recall
+│   ├── best_cases.png                    # Top-5 best predictions of B1 Augmented on test set (Board IoU 0.945–0.962)
+│   ├── error_analysis.png                # TP/FP/FN distribution, IoU/Precision/Recall boxplots: B0 vs B1 Standard vs B1 Augmented
+│   └── worst_cases.png                   # Top-5 worst predictions of B1 Augmented on test set (Board IoU 0.291–0.435)
 ├── src/
 │   ├── CVAT_preparation.py               # COCO JSON → binary PNG masks
 │   ├── check_masks.py                    # Visual mask verification
 │   ├── extract_frames.py                 # Frame extraction from video
 │   └── reorder_by_prefix.py              # Sequential frame renaming
-├── .gitignore
-├── README.md
-└── requirements.txt
+├── .gitignore                            # Git ignore rules (checkpoints, pycache, DS_Store)
+├── README.md                             # Project overview, installation, results, references
+└── requirements.txt                      # Python dependencies with pinned versions
 ```
 
 ---
@@ -165,7 +171,7 @@ Il repository include:
 
 - [x] **Phase 5 - Architectural Optimization**: Sperimentazione sistematica di ottimizzazioni architetturali (LR, decoder channels, stochastic depth dropout, early stopping). Nessuna configurazione ha superato Exp2 — analisi documentata nel repository.
 
-- [ ] **Phase 6 - Critical Analysis & Benchmarking**: Confronto qualitativo e quantitativo tra tutti gli esperimenti (mIoU, Dice, Precision, Recall) e analisi dei casi difficili (occlusioni, motion blur, pannelli piccoli).
+- [x] **Phase 6 - Critical Analysis & Benchmarking**: Confronto qualitativo e quantitativo tra tutti gli esperimenti con visualizzazione attention maps (B0 vs B1 Standard vs B1 Augmented), analisi top-5 best/worst cases sul test set, distribuzione errori TP/FP/FN. Modello ottimale identificato: Exp2 - B1 Augmented (mIoU 87.26%, gap Val→Test -0.69%).
 
 - [ ] **Phase 7 - Final Documentation**: Relazione tecnica dettagliata su architettura, training log, analisi dei casi d'uso difficili e sviluppi futuri.
 
