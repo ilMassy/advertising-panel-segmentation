@@ -124,7 +124,7 @@ advertising-panel-segmentation/
 │   ├── extract_frames.py                 # Frame extraction from video
 │   └── reorder_by_prefix.py              # Sequential frame renaming
 ├── .gitignore                            # Git ignore rules (checkpoints, pycache, DS_Store)
-├── README.md                             # Project overview, installation, results, references
+├── README.md                             # Project overview, installation, results, future directions, references
 └── requirements.txt                      # Python dependencies with pinned versions
 ```
 
