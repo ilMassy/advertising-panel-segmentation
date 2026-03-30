@@ -57,6 +57,11 @@ optimizations.
 2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
 3. Esegui le celle in ordine dalla 1 alla 11
 
+#### Phase 6: Critical Analysis & Benchmarking
+1. Apri `notebooks/Segformer_analysis.ipynb` su Google Colab
+2. Vai su `Opzioni di connessione aggiuntive → Cambia tipo di runtime → T4 GPU`
+3. Esegui le celle in ordine dalla 1 alla 10
+
 ### 💻 Installazione Locale (CPU/GPU)
 ```bash
 # 1. Clone the repository
