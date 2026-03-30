@@ -184,6 +184,23 @@ Il repository include:
 
 ---
 
+## 🔭 Sviluppi Futuri
+
+### Miglioramenti a breve termine (senza nuovo training)
+- **Test Time Augmentation (TTA)**: applicazione di flip orizzontale e multi-scale inference durante il test sul modello Exp2 - B1 Augmented per un potenziale guadagno di +1-2% mIoU senza riaddestrare il modello.
+
+### Miglioramenti sul dataset
+- **Espansione del dataset**: la soglia critica stimata è 2000-3000 immagini per rendere efficaci le ottimizzazioni architetturali testate nella Phase 5. Vale la pena sottolineare che le immagini utilizzate sono di altissima qualità (Full HD 1920x1080), una caratteristica rara nei dataset pubblici di segmentazione sportiva che tipicamente operano a risoluzioni molto inferiori (640x640). Questa qualità è proprio ciò che rende il task potenzialmente eccellente per SegFormer: l'encoder gerarchico MiT sfrutta la ricchezza di dettaglio ad alta risoluzione per costruire rappresentazioni multi-scala che i modelli CNN-based non riescono a sfruttare altrettanto efficacemente. Un'espansione mantenendo la stessa qualità 1080p permetterebbe di sbloccare architetture più potenti come SegFormer-B2 o B3 e raggiungere performance potenzialmente molto superiori.
+- **Etichettatura più precisa**: annotazioni più accurate sui bordi dei pannelli, in particolare nei casi di occlusione parziale da giocatori, ridurrebbero i falsi negativi identificati nell'analisi dei worst cases.
+- **Augmentazioni per la distinzione giocatori/pannelli**: tecniche specifiche per insegnare al modello a separare i giocatori dai pannelli, come ad esempio instance-aware dropout che rimuova selettivamente le regioni corrispondenti ai giocatori durante il training, o l'uso di segmentazioni delle istanze dei giocatori come segnale ausiliario.
+
+### Miglioramenti architetturali (con dataset espanso)
+- **SegFormer-B2 o B3**: con 2000-3000 immagini sarebbe possibile sfruttare backbone più potenti (`embed_dims=128` per B2) senza incorrere nell'overfitting osservato nella Phase 5.
+- **Pseudo-labeling**: uso del modello Augmented per generare maschere automatiche su video non annotati, con validazione manuale sopra soglia di confidence, per espandere il dataset a costo ridotto.
+- **Domain adaptation**: pretraining su dataset pubblici di segmentazione sportiva prima del fine-tuning sul dataset custom, per ridurre il domain gap tra ImageNet e il broadcast sportivo.
+
+---
+
 ## 📖 Literature & References
 
 - **SegFormer**: Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J. M., & Luo, P. (2021). *SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers*. [arXiv:2105.15203](https://arxiv.org/abs/2105.15203)
