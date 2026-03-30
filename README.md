@@ -106,18 +106,18 @@ advertising-panel-segmentation/
 │   └── Upload_to_HuggingFace.ipynb       # Upload models and dataset to Hugging Face
 ├── results/
 │   ├── dataset_previews/
-│   │   └── mask_check_preview.png        # Green overlay confirming high-resolution mask precision
+│   │   └── mask_check_preview.png        # Green overlay confirming high-resolution mask precision (see src/check_masks.py)
 │   ├── exp0_segformer_b0_baseline/       # SegFormer-B0 baseline training logs
 │   ├── exp1_segformer_b1_standard/       # SegFormer-B1 standard training logs
 │   ├── exp2_segformer_b1_augmented/      # SegFormer-B1 augmented training logs
 │   ├── exp3_segformer_b1_optimized/      # SegFormer-B1 optimized training logs (opt1)
 │   ├── exp3_segformer_b1_optimized2/     # SegFormer-B1 optimized training logs (opt2)
 │   ├── exp3_segformer_b1_optimized3/     # SegFormer-B1 optimized training logs (opt3)
-│   ├── attention_maps_comparison.png     # Attention maps: B0 vs B1 Standard vs B1 Augmented
-│   ├── benchmarking_complete.png         # All 6 models Val vs Test mIoU, Val→Test gap, Precision vs Recall
-│   ├── best_cases.png                    # Top-5 best predictions of B1 Augmented on test set (Board IoU 0.945–0.962)
-│   ├── error_analysis.png                # TP/FP/FN distribution, IoU/Precision/Recall boxplots: B0 vs B1 Standard vs B1 Augmented
-│   └── worst_cases.png                   # Top-5 worst predictions of B1 Augmented on test set (Board IoU 0.291–0.435)
+│   ├── attention_maps_comparison.png     # Attention maps: B0 vs B1 Standard vs B1 Augmented (Phase 6)
+│   ├── benchmarking_complete.png         # All 6 models Val vs Test mIoU, Val→Test gap, Precision vs Recall (Phase 6)
+│   ├── best_cases.png                    # Top-5 best predictions of B1 Augmented on test set (Board IoU 0.945–0.962) (Phase 6)
+│   ├── error_analysis.png                # TP/FP/FN distribution, IoU/Precision/Recall boxplots: B0 vs B1 Standard vs B1 Augmented (Phase 6)
+│   └── worst_cases.png                   # Top-5 worst predictions of B1 Augmented on test set (Board IoU 0.291–0.435) (Phase 6)
 ├── src/
 │   ├── CVAT_preparation.py               # COCO JSON → binary PNG masks
 │   ├── check_masks.py                    # Visual mask verification
