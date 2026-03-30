@@ -100,6 +100,8 @@ advertising-panel-segmentation/
 │   ├── Segformer_training.ipynb          # Training notebook Phase 2-3
 │   └── Upload_to_HuggingFace.ipynb       # Upload models and dataset to Hugging Face
 ├── results/
+│   ├── dataset_previews/
+│   │   └── mask_check_preview.png        # Green overlay confirming high-resolution mask precision
 │   ├── exp0_segformer_b0_baseline/       # SegFormer-B0 baseline training logs
 │   ├── exp1_segformer_b1_standard/       # SegFormer-B1 standard training logs
 │   ├── exp2_segformer_b1_augmented/      # SegFormer-B1 augmented training logs
