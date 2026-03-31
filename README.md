@@ -131,6 +131,9 @@ advertising-panel-segmentation/
 ---
 
 ## 🧪 Esperimenti
+
+> Metriche calcolate sul **test set** (146 immagini). Dice, Precision e Recall si riferiscono alla classe **board** (pannello pubblicitario), no background ne media tra i valori delle due classi.
+
 | Esperimento | Modello | Augmentation | mIoU | Board IoU | Dice | Precision | Recall |
 |---|---|---|---|---|---|---|---|
 | Exp0 - Baseline | SegFormer-B0 | Standard | 87.15% | 76.28% | 86.55% | 84.13% | 89.10% |
