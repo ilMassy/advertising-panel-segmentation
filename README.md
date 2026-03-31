@@ -132,7 +132,7 @@ advertising-panel-segmentation/
 
 ## 🧪 Esperimenti
 
-> Metriche calcolate sul **test set** (146 immagini). Dice, Precision e Recall si riferiscono alla classe **board** (pannello pubblicitario), no **background** ne media tra i valori delle due classi.
+> Metriche calcolate sul **test set** (146 immagini). Dice, Precision e Recall si riferiscono alla classe **board** (pannello pubblicitario), non quindi alla classe **background** ne alla media tra i valori delle due classi.
 
 | Esperimento | Modello | Augmentation | mIoU | Board IoU | Dice | Precision | Recall |
 |---|---|---|---|---|---|---|---|
