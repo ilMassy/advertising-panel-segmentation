@@ -201,6 +201,7 @@ Il repository include:
 - **SegFormer-B2 o B3**: con 2000-3000 immagini sarebbe possibile sfruttare backbone più potenti (`embed_dims=128` per B2) senza incorrere nell'overfitting osservato nella Phase 5.
 - **Pseudo-labeling**: uso del modello Augmented per generare maschere automatiche su video non annotati, con validazione manuale sopra soglia di confidence, per espandere il dataset a costo ridotto.
 - **Domain adaptation**: pretraining su dataset pubblici di segmentazione sportiva prima del fine-tuning sul dataset custom, per ridurre il domain gap tra ImageNet e il broadcast sportivo.
+- **Architetture alternative**: valutazione di Mask2Former che usa attention cross-modale per separare istanze diverse — potrebbe gestire meglio la distinzione giocatori/pannelli rispetto alla segmentazione semantica pura.
 
 ---
 
