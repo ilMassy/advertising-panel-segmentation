@@ -206,12 +206,16 @@ Il repository include:
 
 ## 📖 Literature & References
 
-- **SegFormer**: Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J. M., & Luo, P. (2021). *SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers*. [arXiv:2105.15203](https://arxiv.org/abs/2105.15203)
+1. **SegFormer**: Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J. M., & Luo, P. (2021). *SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers*. NeurIPS 2021. [arXiv:2105.15203](https://arxiv.org/abs/2105.15203)
 
-- **Vision Transformer (ViT)**: Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., ... & Houlsby, N. (2020). *An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale*. [arXiv:2010.11929](https://arxiv.org/abs/2010.11929)
+2. **Vision Transformer (ViT)**: Dosovitskiy, A. et al. (2020). *An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale*. ICLR 2021. [arXiv:2010.11929](https://arxiv.org/abs/2010.11929)
 
-- **MMSegmentation**: Contributors of MMSegmentation (2020). *OpenMMLab Semantic Segmentation Toolbox and Benchmark*. [GitHub](https://github.com/open-mmlab/mmsegmentation)
+3. **MMSegmentation**: OpenMMLab Contributors (2020). *OpenMMLab Semantic Segmentation Toolbox and Benchmark*. [GitHub](https://github.com/open-mmlab/mmsegmentation)
 
-- **Albumentations**: Buslaev, A., Iglovikov, V. I., Khvedchenya, E., Parinov, A., Kurakin, A., & Kalinin, A. A. (2020). *Albumentations: Fast and Flexible Image Augmentations*. [Information 2020](https://www.mdpi.com/2078-2489/11/2/125)
+4. **Albumentations**: Buslaev, A. et al. (2020). *Albumentations: Fast and Flexible Image Augmentations*. Information 2020. [DOI](https://www.mdpi.com/2078-2489/11/2/125)
 
-- **ImageNet Pretraining**: Deng, J., Dong, W., Socher, R., Li, L. J., Li, K., & Fei-Fei, L. (2009). *ImageNet: A Large-Scale Hierarchical Image Database*. CVPR 2009. [Paper](https://ieeexplore.ieee.org/document/5206848)
+5. **DeepLabV3**: Chen, L. C., Papandreou, G., Schroff, F., & Adam, H. (2017). *Rethinking Atrous Convolution for Semantic Image Segmentation*. [arXiv:1706.05587](https://arxiv.org/abs/1706.05587)
+
+6. **SETR**: Zheng, S. et al. (2021). *Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers*. CVPR 2021. [arXiv:2012.15840](https://arxiv.org/abs/2012.15840)
+
+7. **ImageNet**: Deng, J. et al. (2009). *ImageNet: A Large-Scale Hierarchical Image Database*. CVPR 2009. [DOI](https://ieeexplore.ieee.org/document/5206848)
