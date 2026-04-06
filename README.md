@@ -139,7 +139,7 @@ advertising-panel-segmentation/
 | Exp0 - Baseline | SegFormer-B0 | Standard | 87.15% | 76.28% | 86.55% | 84.13% | 89.10% |
 | Exp1 - Standard | SegFormer-B1 | Standard | 84.29% | 71.12% | 83.12% | 79.26% | 87.39% |
 | **Exp2 - Augmented** ⭐ | **SegFormer-B1** | **Sport-specific** | **87.26%** | **76.45%** | **86.66%** | **85.76%** | **87.57%** |
-| Exp3 - Optimized1 | SegFormer-B1 | Sport-specific reduced + LR 3e-5 + ch=512 | 84.58% | 71.68% | 83.51% | 78.66% | 88.99% |
+| Exp3 - Optimized | SegFormer-B1 | Sport-specific reduced + LR 3e-5 + ch=512 | 84.58% | 71.68% | 83.51% | 78.66% | 88.99% |
 | Exp3 - Optimized2 | SegFormer-B1 | Sport-specific reduced + LR 3e-5 + ch=256 | 84.92% | 72.26% | 83.90% | 80.40% | 87.71% |
 | Exp3 - Optimized3 | SegFormer-B1 | Sport-specific + drop_path=0.15 | 86.42% | 74.99% | 85.71% | 82.25% | 89.47% |
 
