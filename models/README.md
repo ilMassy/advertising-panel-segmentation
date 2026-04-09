@@ -1,4 +1,4 @@
-# Trained Models Summary
+# Trained Models Summary (Test Set Results -> 146 images)
 
 ## Exp0 - SegFormer-B0 Baseline
 - Best checkpoint: best_mIoU_iter_18000.pth
@@ -18,7 +18,7 @@
 - Recall: 87.39%
 - Stored on: Google Drive
 
-## Exp2 - SegFormer-B1 Augmented
+## Exp2 - SegFormer-B1 Augmented ⭐
 - Best checkpoint: best_mIoU_iter_14000.pth
 - mIoU: 87.26%
 - board IoU: 76.45%
