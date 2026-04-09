@@ -19,19 +19,6 @@ Best checkpoints for each experiment, evaluated on both **validation set (149 im
 
 ---
 
-## Test Set Results (146 images)
-
-| Experiment | Best Checkpoint | mIoU | Board IoU | Dice | Precision | Recall |
-|---|---|---|---|---|---|---|
-| Exp0 - B0 Baseline | best_mIoU_iter_18000.pth | 87.15% | 76.28% | 86.55% | 84.13% | 89.10% |
-| Exp1 - B1 Standard | best_mIoU_iter_10000.pth | 84.29% | 71.12% | 83.12% | 79.26% | 87.39% |
-| **Exp2 - B1 Augmented** ⭐ | best_mIoU_iter_14000.pth | **87.26%** | **76.45%** | **86.66%** | **85.76%** | 87.57% |
-| Exp3 - Optimized | best_mIoU_iter_14000.pth | 84.58% | 71.68% | 83.51% | 78.66% | 88.99% |
-| Exp3 - Optimized2 | best_mIoU_iter_12000.pth | 84.92% | 72.26% | 83.90% | 80.40% | 87.71% |
-| Exp3 - Optimized3 | best_mIoU_iter_18000.pth | 86.42% | 74.99% | 85.71% | 82.25% | **89.47%** |
-
----
-
 ## Val → Test Gap Analysis
 
 | Experiment | Val mIoU | Test mIoU | Gap |
