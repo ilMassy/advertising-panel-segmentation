@@ -1,6 +1,6 @@
 # Checkpoints Summary
 
-Best checkpoints for each experiment, evaluated on both **validation set (149 images)** and **test set (146 images)**.
+Best checkpoints for each experiment evaluated on **validation set (149 images)**.
 
 > Note: val mIoU is used to select the best checkpoint during training. Test set results represent the true generalization performance.
 
