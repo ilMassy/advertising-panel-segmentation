@@ -94,8 +94,8 @@ advertising-panel-segmentation/
 │   └── segformer_b1_standard.py          # SegFormer-B1 standard config (Phase 3)
 ├── models/
 │   ├── checkpoints/
-│   │   └── README.md                     # Val + Test results and Val→Test gap analysis
-│   └── README.md                         # Performance summary of trained models
+│   │   └── README.md                     # Val set results and Val→Test gap analysis
+│   └── README.md                         # Performance summary of trained models on Test set
 ├── notebooks/
 │   ├── Segformer_analysis.ipynb          # Critical analysis notebook Phase 6
 │   ├── Segformer_augmented.ipynb         # Training notebook Phase 4
