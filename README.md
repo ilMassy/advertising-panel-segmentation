@@ -40,6 +40,9 @@ optimizations.
 
 ## ⚙️ Installazione
 
+<details>
+<summary>Visualizza installazione</summary>
+
 ### ☁️ Google Colab (Consigliato)
 
 #### Phase 2-3: Baseline e SegFormer-B1 Standard
@@ -80,7 +83,22 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
     $(python -c "import mmseg, os; print(os.path.dirname(mmseg.__file__))")/__init__.py
 ```
 
+</details>
+
+---
+
 ## 🎬 Inferenza su Video
+
+<<<<<<< HEAD
+Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all'encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
+
+> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata e testata in ambiente **Google Colab con GPU NVIDIA Tesla T4**.
+
+> **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware della **Tesla T4**.
+
+=======
+<details>
+<summary>Visualizza inferenza video</summary>
 
 Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all'encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
 
@@ -252,9 +270,12 @@ out.release()
 print("[INFO] Processing completed successfully")
 ```
 
+</details>
+
 ---
 
 ## 📁 Struttura del Repository
+
 ```
 advertising-panel-segmentation/
 ├── configs/
@@ -342,24 +363,20 @@ Il repository include:
 ## 🚀 Roadmap
 
 - [x] **Project Structure & Repository Setup**: Configurazione ambiente Python 3.10+ e MMSegmentation stack.
-
 - [x] **Phase 1 - Dataset Curation**: Estrazione frame a 1920x1080 da highlights HD, annotazione poligonale su CVAT.ai, conversione COCO JSON → maschere binarie PNG (967 immagini, split train/val/test).
-
 - [x] **Phase 2 - Baseline SegFormer-B0**: Addestramento del modello leggero B0 per stabilire il benchmark di riferimento (IoU, Dice, Precision, Recall).
-
 - [x] **Phase 3 - SegFormer-B1 Standard**: Fine-tuning di B1 sul dataset custom e confronto quantitativo con la baseline B0. Best checkpoint a iter 10000 (mIoU 84.29%).
-
 - [x] **Phase 4 - Domain-Specific Augmentation**: Implementazione di tecniche sport-specific (Motion Blur, Occlusion Cutout, Color Jitter) per migliorare la robustezza del modello. Best checkpoint a iter 14000 (mIoU 87.26%).
-
 - [x] **Phase 5 - Architectural Optimization**: Sperimentazione sistematica di ottimizzazioni architetturali (LR, decoder channels, stochastic depth dropout, early stopping). Nessuna configurazione ha superato Exp2 — analisi documentata nel repository.
-
 - [x] **Phase 6 - Critical Analysis & Benchmarking**: Confronto qualitativo e quantitativo tra tutti gli esperimenti con visualizzazione attention maps (B0 vs B1 Standard vs B1 Augmented), analisi top-5 best/worst cases sul test set, distribuzione errori TP/FP/FN. Modello ottimale identificato: Exp2 - B1 Augmented (mIoU 87.26%, gap Val→Test -0.69%).
-
 - [ ] **Phase 7 - Final Documentation**: Relazione tecnica dettagliata su architettura, training log, analisi dei casi d'uso difficili e sviluppi futuri.
 
 ---
 
 ## 🔭 Sviluppi Futuri
+
+<details>
+<summary>Visualizza sviluppi futuri</summary>
 
 ### Miglioramenti a breve termine (senza nuovo training)
 - **Test Time Augmentation (TTA)**: applicazione di flip orizzontale e multi-scale inference durante il test sul modello Exp2 - B1 Augmented per un potenziale guadagno di +1-2% mIoU senza riaddestrare il modello.
@@ -375,9 +392,14 @@ Il repository include:
 - **Domain adaptation**: pretraining su dataset pubblici di segmentazione sportiva prima del fine-tuning sul dataset custom, per ridurre il domain gap tra ImageNet e il broadcast sportivo.
 - **Architetture alternative**: valutazione di Mask2Former che usa attention cross-modale per separare istanze diverse — potrebbe gestire meglio la distinzione giocatori/pannelli rispetto alla segmentazione semantica pura.
 
+</details>
+
 ---
 
 ## 📖 Literature & References
+
+<details>
+<summary>Visualizza riferimenti</summary>
 
 - **SegFormer**: Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J. M., & Luo, P. (2021). *SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers*. NeurIPS 2021. [arXiv:2105.15203](https://arxiv.org/abs/2105.15203)
 
@@ -392,3 +414,17 @@ Il repository include:
 - **SETR**: Zheng, S. et al. (2021). *Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers*. CVPR 2021. [arXiv:2012.15840](https://arxiv.org/abs/2012.15840)
 
 - **ImageNet**: Deng, J. et al. (2009). *ImageNet: A Large-Scale Hierarchical Image Database*. CVPR 2009. [DOI](https://ieeexplore.ieee.org/document/5206848)
+
+</details>
+(base) massimiliano@LAPTOP-8J8IS9TE:~/advertising-panel-segmentation$ git pull --rebase origin main
+From https://github.com/ilMassy/advertising-panel-segmentation
+ * branch            main       -> FETCH_HEAD
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+error: could not apply 168b3ad... Updated README.md with drop-down menus added
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 168b3ad... Updated README.md with drop-down menus added
+(base) massimiliano@LAPTOP-8J8IS9TE:~/advertising-panel-segmentation$
