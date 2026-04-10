@@ -92,60 +92,141 @@ Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere applicato dire
 
 ```python
 from huggingface_hub import hf_hub_download
+import os
 
+# --- Configuration ---
+REPO_ID = "ilMassy/advertising-panel-segmentation"
+CHECKPOINT_FILENAME = "models/exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth"
+LOCAL_DIR = "./checkpoints"
+
+# --- Download checkpoint from Hugging Face Hub ---
 checkpoint_path = hf_hub_download(
-    repo_id="ilMassy/advertising-panel-segmentation",
-    filename="models/exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth",
-    local_dir="./checkpoints"
+    repo_id=REPO_ID,
+    filename=CHECKPOINT_FILENAME,
+    local_dir=LOCAL_DIR
 )
+
+# --- Sanity check ---
+if not os.path.exists(checkpoint_path):
+    raise FileNotFoundError("Checkpoint download failed")
+
+print(f"[INFO] Checkpoint available at: {checkpoint_path}")
 ```
 
 ### Step 2 — Carica il modello
 
 ```python
 from mmseg.apis import init_model
+import torch
+import os
 
+# --- Configuration ---
+CONFIG_PATH = "configs/segformer_b1_augmented.py"
+
+# --- Device selection ---
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+print(f"[INFO] Using device: {device}")
+
+# --- Validate config path ---
+if not os.path.exists(CONFIG_PATH):
+    raise FileNotFoundError(f"Config file not found: {CONFIG_PATH}")
+
+# --- Initialize model ---
 model = init_model(
-    "configs/segformer_b1_augmented.py",
-    "checkpoints/models/exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth",
-    device="cuda:0"
+    CONFIG_PATH,
+    checkpoint_path,  # use path from Step 1
+    device=device
 )
+
+# --- Ensure test pipeline exists (fallback fix) ---
 if not hasattr(model.cfg, "test_pipeline"):
+    print("[WARNING] test_pipeline not found, falling back to val_pipeline")
     model.cfg.test_pipeline = model.cfg.val_pipeline
+
+# --- Set evaluation mode ---
 model.eval()
+
+print("[INFO] Model initialized and ready")
 ```
 
 ### Step 3 — Inferenza frame per frame
 
 ```python
-import cv2, torch, numpy as np
+import cv2
+import torch
+import numpy as np
 from mmseg.apis import inference_model
 
-cap = cv2.VideoCapture("video_input.mp4")
+# --- Configuration ---
+INPUT_VIDEO = "video_input.mp4"
+OUTPUT_VIDEO = "video_output.mp4"
+TARGET_CLASS = 1
+
+# Optional: speed/VRAM optimization
+USE_RESIZE = False
+RESIZE_TO = (1280, 720)  # (width, height)
+
+# --- Open video ---
+cap = cv2.VideoCapture(INPUT_VIDEO)
+if not cap.isOpened():
+    raise RuntimeError("Error opening input video")
+
 fps    = cap.get(cv2.CAP_PROP_FPS)
 width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 total  = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-out = cv2.VideoWriter("video_output.mp4", cv2.VideoWriter_fourcc(*"avc1"), fps, (width, height))
+print(f"[INFO] Video: {width}x{height} @ {fps} FPS, {total} frames")
 
-try:
+# --- Video writer (more compatible codec) ---
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+out = cv2.VideoWriter(OUTPUT_VIDEO, fourcc, fps, (width, height))
+
+# --- Inference loop ---
+with torch.no_grad(), torch.cuda.amp.autocast(enabled=(device != "cpu")):
+
     for i in range(total):
         ret, frame = cap.read()
         if not ret:
             break
-        with torch.no_grad():
-            result = inference_model(model, frame[..., ::-1])  # BGR→RGB
-        mask = result.pred_sem_seg.data.squeeze().cpu().numpy().astype(np.uint8)
+
+        original_frame = frame
+
+        # --- Optional resize for performance ---
+        if USE_RESIZE:
+            frame = cv2.resize(frame, RESIZE_TO)
+
+        # --- Convert BGR to RGB ---
+        rgb = frame[..., ::-1]
+
+        # --- Run inference ---
+        result = inference_model(model, rgb)
+
+        # --- Extract segmentation mask ---
+        mask = result.pred_sem_seg.squeeze().cpu().numpy().astype(np.uint8)
+
+        # --- Restore original resolution if resized ---
+        if USE_RESIZE:
+            mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_NEAREST)
+            frame = original_frame
+
+        # --- Apply overlay (highlight target class in red) ---
         overlay = frame.copy()
-        overlay[mask == 1] = (0, 0, 255)
-        out.write(cv2.addWeighted(overlay, 0.45, frame, 0.55, 0))
+        overlay[mask == TARGET_CLASS] = (0, 0, 255)
+
+        blended = cv2.addWeighted(overlay, 0.45, frame, 0.55, 0)
+
+        out.write(blended)
+
+        # --- Progress logging ---
         if (i + 1) % 50 == 0:
-            print(f"Processed {i + 1}/{total} frames")
-finally:
-    cap.release()
-    out.release()
-    print("Processing completed.")
+            print(f"[INFO] Processed {i+1}/{total} frames")
+
+# --- Release resources ---
+cap.release()
+out.release()
+
+print("[INFO] Processing completed successfully")
 ```
 
 ---
