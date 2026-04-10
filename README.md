@@ -82,11 +82,11 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 ## 🎬 Inferenza su Video
 
-Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere applicato direttamente a video sportivi in Full HD. La pipeline processa ogni frame alla **risoluzione nativa 1920×1080**, sfruttando il dettaglio originale senza alcun downscaling, grazie all'encoder gerarchico MiT agnostico alla risoluzione.
+Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all’inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all’encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
 
-> **Nota implementativa**: il codice seguente è stato sviluppato come proposta architetturale per l'inferenza video. Sebbene segua rigorosamente le API di MMSegmentation e la logica di processamento del framework, non è stato ancora sottoposto a test funzionali completi su flussi video reali. È progettato per operare su **Google Colab con GPU NVIDIA Tesla T4**; per risultati ottimali, si consiglia di fornire video alla risoluzione nativa del dataset (1920×1080).
+> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l’inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata e testata in ambiente **Google Colab con GPU NVIDIA Tesla T4**.
 
-> **Nota sulla risoluzione**: risoluzioni inferiori (es. 720p, 480p) sono supportate, ma poiché il training è avvenuto su dettagli a 1080p, possono causare una perdita di precisione sui bordi sottili della board. Risoluzioni superiori (es. 4K) sono elaborate correttamente, ma richiedono VRAM significativamente maggiore e potrebbero necessitare di un ridimensionamento preventivo per operare entro i limiti della Tesla T4.
+> **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware disponibili.
 
 ### Step 1 — Scarica il checkpoint da Hugging Face
 
