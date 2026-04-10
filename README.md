@@ -93,7 +93,7 @@ Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inf
 
 > **Prerequisito**: assicurarsi di aver completato la sezione [⚙️ Installazione](#️-installazione) prima di eseguire il codice seguente.
 
-> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata per ambiente **Google Colab con GPU NVIDIA Tesla T4**.
+> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è stato ancora sottoposto a test funzionali su flussi video e potrebbe quindi generare errori. La pipeline è stata sviluppata per ambiente **Google Colab con GPU NVIDIA Tesla T4**.
 
 > **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware della **Tesla T4**.
 
