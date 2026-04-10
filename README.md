@@ -171,11 +171,6 @@ model = init_model(
     device=device
 )
 
-# --- Ensure test pipeline exists (fallback fix) ---
-if not hasattr(model.cfg, "test_pipeline"):
-    print("[WARNING] test_pipeline not found, falling back to val_pipeline")
-    model.cfg.test_pipeline = model.cfg.val_pipeline
-
 # --- Set evaluation mode ---
 model.eval()
 
