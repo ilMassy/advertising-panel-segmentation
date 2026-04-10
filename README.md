@@ -185,35 +185,51 @@ import torch
 import numpy as np
 from mmseg.apis import inference_model
 
-# --- Configuration ---
+# ============================================================
+# Configuration
+# ============================================================
+
 INPUT_VIDEO = "video_input.mp4"
 OUTPUT_VIDEO = "video_output.mp4"
+
+# Class index according to config:
+# meta = ('background', 'board')
 TARGET_CLASS = 1
 
-# Optional: speed/VRAM optimization
 USE_RESIZE = False
-RESIZE_TO = (1280, 720)  # (width, height)
+RESIZE_TO = (1280, 720)
 
-# --- Open video ---
+# ============================================================
+# Video input
+# ============================================================
+
 cap = cv2.VideoCapture(INPUT_VIDEO)
+
 if not cap.isOpened():
-    raise RuntimeError("Error opening input video")
+    raise RuntimeError("Cannot open input video")
 
-fps    = cap.get(cv2.CAP_PROP_FPS)
-width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+fps = cap.get(cv2.CAP_PROP_FPS) or 25
+width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-total  = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-print(f"[INFO] Video: {width}x{height} @ {fps} FPS, {total} frames")
+print(f"[INFO] Video: {width}x{height} @ {fps:.2f} FPS | {total} frames")
 
-# --- Video writer ---
+# ============================================================
+# Video output
+# ============================================================
+
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")
 out = cv2.VideoWriter(OUTPUT_VIDEO, fourcc, fps, (width, height))
 
-# --- Inference loop ---
-with torch.no_grad(), torch.cuda.amp.autocast(enabled=(device != "cpu")):
+# ============================================================
+# Inference loop
+# ============================================================
+
+with torch.no_grad():
 
     for i in range(total):
+
         ret, frame = cap.read()
         if not ret:
             break
@@ -221,24 +237,30 @@ with torch.no_grad(), torch.cuda.amp.autocast(enabled=(device != "cpu")):
         original_frame = frame
 
         # --- Optional resize for performance ---
+
         if USE_RESIZE:
             frame = cv2.resize(frame, RESIZE_TO)
 
-        # --- Convert BGR to RGB ---
-        rgb = frame[..., ::-1]
+        # --- Model inference (MMSeg expects BGR frame) ---
 
-        # --- Run inference ---
-        result = inference_model(model, rgb)
+        result = inference_model(model, frame)
 
-        # --- Extract segmentation mask ---
-        mask = result.pred_sem_seg.squeeze().cpu().numpy().astype(np.uint8)
+        # --- Segmentation mask extraction ---
+
+        mask = result.pred_sem_seg.data.squeeze().cpu().numpy()
 
         # --- Restore original resolution if resized ---
+
         if USE_RESIZE:
-            mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_NEAREST)
+            mask = cv2.resize(
+                mask.astype(np.uint8),
+                (width, height),
+                interpolation=cv2.INTER_NEAREST
+            )
             frame = original_frame
 
-        # --- Apply overlay (highlight target class in red) ---
+        # --- Visualization (overlay target class) ---
+
         overlay = frame.copy()
         overlay[mask == TARGET_CLASS] = (0, 0, 255)
 
@@ -247,14 +269,18 @@ with torch.no_grad(), torch.cuda.amp.autocast(enabled=(device != "cpu")):
         out.write(blended)
 
         # --- Progress logging ---
+
         if (i + 1) % 50 == 0:
             print(f"[INFO] Processed {i+1}/{total} frames")
 
-# --- Release resources ---
+# ============================================================
+# Cleanup
+# ============================================================
+
 cap.release()
 out.release()
 
-print("[INFO] Processing completed successfully")
+print("[INFO] Video processing completed successfully")
 ```
 
 </details>
