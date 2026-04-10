@@ -96,7 +96,7 @@ Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inf
 > **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware della **Tesla T4**.
 
 <details>
-<summary>Visualizza inferenza video</summary>
+<summary>Visualizza inferenza su video</summary>
 
 ### Step 1 — Scarica checkpoint e risorse da Hugging Face
 
