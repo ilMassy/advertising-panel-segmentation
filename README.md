@@ -80,6 +80,74 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
     $(python -c "import mmseg, os; print(os.path.dirname(mmseg.__file__))")/__init__.py
 ```
 
+## 🎬 Inferenza su Video
+
+Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere applicato direttamente a video sportivi in Full HD. La pipeline processa ogni frame alla **risoluzione nativa 1920×1080**, sfruttando il dettaglio originale senza alcun downscaling, grazie all'encoder gerarchico MiT agnostico alla risoluzione.
+
+> **Nota implementativa**: il codice seguente è stato sviluppato come proposta architetturale per l'inferenza video. Sebbene segua rigorosamente le API di MMSegmentation e la logica di processamento del framework, non è stato ancora sottoposto a test funzionali completi su flussi video reali. È progettato per operare su **Google Colab con GPU NVIDIA Tesla T4**; per risultati ottimali, si consiglia di fornire video alla risoluzione nativa del dataset (1920×1080).
+
+> **Nota sulla risoluzione**: risoluzioni inferiori (es. 720p, 480p) sono supportate, ma poiché il training è avvenuto su dettagli a 1080p, possono causare una perdita di precisione sui bordi sottili della board. Risoluzioni superiori (es. 4K) sono elaborate correttamente, ma richiedono VRAM significativamente maggiore e potrebbero necessitare di un ridimensionamento preventivo per operare entro i limiti della Tesla T4.
+
+### Step 1 — Scarica il checkpoint da Hugging Face
+
+```python
+from huggingface_hub import hf_hub_download
+
+checkpoint_path = hf_hub_download(
+    repo_id="ilMassy/advertising-panel-segmentation",
+    filename="models/exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth",
+    local_dir="./checkpoints"
+)
+```
+
+### Step 2 — Carica il modello
+
+```python
+from mmseg.apis import init_model
+
+model = init_model(
+    "configs/segformer_b1_augmented.py",
+    "checkpoints/models/exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth",
+    device="cuda:0"
+)
+if not hasattr(model.cfg, "test_pipeline"):
+    model.cfg.test_pipeline = model.cfg.val_pipeline
+model.eval()
+```
+
+### Step 3 — Inferenza frame per frame
+
+```python
+import cv2, torch, numpy as np
+from mmseg.apis import inference_model
+
+cap = cv2.VideoCapture("video_input.mp4")
+fps    = cap.get(cv2.CAP_PROP_FPS)
+width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+total  = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+out = cv2.VideoWriter("video_output.mp4", cv2.VideoWriter_fourcc(*"avc1"), fps, (width, height))
+
+try:
+    for i in range(total):
+        ret, frame = cap.read()
+        if not ret:
+            break
+        with torch.no_grad():
+            result = inference_model(model, frame[..., ::-1])  # BGR→RGB
+        mask = result.pred_sem_seg.data.squeeze().cpu().numpy().astype(np.uint8)
+        overlay = frame.copy()
+        overlay[mask == 1] = (0, 0, 255)
+        out.write(cv2.addWeighted(overlay, 0.45, frame, 0.55, 0))
+        if (i + 1) % 50 == 0:
+            print(f"Frame {i + 1}/{total} elaborati")
+finally:
+    cap.release()
+    out.release()
+    print("Processing completed.")
+```
+
 ---
 
 ## 📁 Struttura del Repository
