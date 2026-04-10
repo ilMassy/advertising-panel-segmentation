@@ -82,13 +82,13 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 ## 🎬 Inferenza su Video
 
-Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all’inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all’encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
+Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all'encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
 
-> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l’inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata e testata in ambiente **Google Colab con GPU NVIDIA Tesla T4**.
+> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata e testata in ambiente **Google Colab con GPU NVIDIA Tesla T4**.
 
-> **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware disponibili.
+> **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware della **Tesla T4**.
 
-### Step 1 — Scarica il checkpoint da Hugging Face
+### Step 1 — Scarica checkpoint e risorse da Hugging Face
 
 ```python
 from huggingface_hub import hf_hub_download
@@ -113,28 +113,51 @@ if not os.path.exists(checkpoint_path):
 print(f"[INFO] Checkpoint available at: {checkpoint_path}")
 ```
 
-### Step 2 — Carica il modello
+### Step 2 — Scarica la configurazione dal repository GitHub
 
 ```python
-from mmseg.apis import init_model
-import torch
 import os
+import subprocess
 
 # --- Configuration ---
-CONFIG_PATH = "configs/segformer_b1_augmented.py"
+GITHUB_REPO = "https://github.com/ilMassy/advertising-panel-segmentation.git"
+LOCAL_REPO_DIR = "./repo"
 
-# --- Device selection ---
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
-print(f"[INFO] Using device: {device}")
+# --- Clone repository (if not already present) ---
+if not os.path.exists(LOCAL_REPO_DIR):
+    print("[INFO] Cloning GitHub repository...")
+    subprocess.run(["git", "clone", GITHUB_REPO, LOCAL_REPO_DIR], check=True)
+else:
+    print("[INFO] Repository already exists")
+
+# --- Path to config file ---
+CONFIG_PATH = os.path.join(
+    LOCAL_REPO_DIR,
+    "configs",
+    "segformer_b1_augmented.py"
+)
 
 # --- Validate config path ---
 if not os.path.exists(CONFIG_PATH):
     raise FileNotFoundError(f"Config file not found: {CONFIG_PATH}")
 
+print(f"[INFO] Config loaded from: {CONFIG_PATH}")
+```
+
+### Step 3 — Carica il modello
+
+```python
+from mmseg.apis import init_model
+import torch
+
+# --- Device selection ---
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+print(f"[INFO] Using device: {device}")
+
 # --- Initialize model ---
 model = init_model(
     CONFIG_PATH,
-    checkpoint_path,  # use path from Step 1
+    checkpoint_path,
     device=device
 )
 
@@ -149,7 +172,7 @@ model.eval()
 print("[INFO] Model initialized and ready")
 ```
 
-### Step 3 — Inferenza frame per frame
+### Step 4 — Inferenza frame per frame
 
 ```python
 import cv2
@@ -178,7 +201,7 @@ total  = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
 print(f"[INFO] Video: {width}x{height} @ {fps} FPS, {total} frames")
 
-# --- Video writer (more compatible codec) ---
+# --- Video writer ---
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")
 out = cv2.VideoWriter(OUTPUT_VIDEO, fourcc, fps, (width, height))
 
