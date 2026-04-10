@@ -89,14 +89,6 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 ## 🎬 Inferenza su Video
 
-<<<<<<< HEAD
-Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all'encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
-
-> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata e testata in ambiente **Google Colab con GPU NVIDIA Tesla T4**.
-
-> **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware della **Tesla T4**.
-
-=======
 <details>
 <summary>Visualizza inferenza video</summary>
 
@@ -416,15 +408,3 @@ Il repository include:
 - **ImageNet**: Deng, J. et al. (2009). *ImageNet: A Large-Scale Hierarchical Image Database*. CVPR 2009. [DOI](https://ieeexplore.ieee.org/document/5206848)
 
 </details>
-(base) massimiliano@LAPTOP-8J8IS9TE:~/advertising-panel-segmentation$ git pull --rebase origin main
-From https://github.com/ilMassy/advertising-panel-segmentation
- * branch            main       -> FETCH_HEAD
-Auto-merging README.md
-CONFLICT (content): Merge conflict in README.md
-error: could not apply 168b3ad... Updated README.md with drop-down menus added
-hint: Resolve all conflicts manually, mark them as resolved with
-hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
-hint: You can instead skip this commit: run "git rebase --skip".
-hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
-Could not apply 168b3ad... Updated README.md with drop-down menus added
-(base) massimiliano@LAPTOP-8J8IS9TE:~/advertising-panel-segmentation$
