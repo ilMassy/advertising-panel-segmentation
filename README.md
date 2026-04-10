@@ -92,6 +92,7 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 <details>
 <summary>Visualizza inferenza video</summary>
 
+
 Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all'encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
 
 > **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è ancora stato validato estensivamente su flussi video reali e potrebbe generare errori. La pipeline è stata sviluppata e testata in ambiente **Google Colab con GPU NVIDIA Tesla T4**.
