@@ -364,7 +364,7 @@ advertising-panel-segmentation/
 > di dimensioni ridotte.
 
 > **Best model**: Exp2 - SegFormer-B1 Augmented con augmentazioni sport-specific bilanciate.
-> Modelli e dataset disponibili su 🤗 [Hugging Face](https://huggingface.co/ilMassy/advertising-panel-segmentation)
+> Dataset e modelli disponibili su 🤗 [Hugging Face](https://huggingface.co/ilMassy/advertising-panel-segmentation)
 
 ---
 
