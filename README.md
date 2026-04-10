@@ -141,7 +141,7 @@ try:
         overlay[mask == 1] = (0, 0, 255)
         out.write(cv2.addWeighted(overlay, 0.45, frame, 0.55, 0))
         if (i + 1) % 50 == 0:
-            print(f"Frame {i + 1}/{total} elaborati")
+            print(f"Processed {i + 1}/{total} frames")
 finally:
     cap.release()
     out.release()
