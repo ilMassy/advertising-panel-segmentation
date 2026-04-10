@@ -375,8 +375,8 @@ Modelli addestrati e dataset sono disponibili pubblicamente su Hugging Face:
 **[https://huggingface.co/ilMassy/advertising-panel-segmentation](https://huggingface.co/ilMassy/advertising-panel-segmentation)**
 
 Il repository include:
-- Tutti i checkpoint dei modelli addestrati (`best_mIoU_iter_*.pth`)
 - Il dataset completo (`processed.zip` — 967 immagini + maschere, split train/val/test)
+- Tutti i checkpoint dei modelli addestrati (`best_mIoU_iter_*.pth`)
 
 ---
 
