@@ -93,10 +93,10 @@ Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inf
 
 Il modello può inoltre gestire input a risoluzione inferiore, adattandosi dinamicamente grazie alla natura resolution-agnostic dell'encoder MiT, con un possibile trade-off tra prestazioni e accuratezza.
 
+> Il codice seguente è pseudocodice — descrive il flusso concettuale della pipeline.
+
 <details>
 <summary>Visualizza inferenza su video</summary>
-
-> Il codice seguente è pseudocodice — descrive il flusso concettuale della pipeline.
 
 ```
 1. Scarica checkpoint da Hugging Face (exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth)
