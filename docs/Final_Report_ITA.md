@@ -73,7 +73,13 @@ Il task richiede un sistema in grado di operare su immagini ad alta risoluzione 
 
 Il problema è formalizzato come **Semantic Segmentation binaria**: dato un frame $I \in \mathbb{R}^{H \times W \times 3}$, il modello produce una maschera $\hat{M} \in \{0, 1\}^{H \times W}$ dove:
 
-$\hat{M}(i,j)=\{1 \ \text{se il pixel } (i,j) \text{ appartiene a un pannello pubblicitario},\ 0 \ \text{altrimenti (background)}\}$
+$$
+\hat{M}(i,j) =
+\begin{cases}
+1 & \text{se il pixel } (i,j) \text{ appartiene a un pannello pubblicitario} \\
+0 & \text{altrimenti (background)}
+\end{cases}
+$$
 
 Le metriche di valutazione adottate sono:
 
