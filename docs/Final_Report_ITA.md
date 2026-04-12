@@ -591,7 +591,7 @@ Il progetto ha raggiunto il suo obiettivo principale: identificare empiricamente
 
 3. **Analisi architetturale**: le attention maps dimostrano che B1 (`embed_dims=64`) estrae rappresentazioni significativamente più ricche di B0 (`embed_dims=32`), confermando la scelta del backbone ottimale con evidenza visiva diretta
 
-4. **Sinergia SegFormer + 1080p**: il Mix-FFN agnostico alla risoluzione e l'encoder gerarchico MiT rendono SegFormer architetturalmente superiore a CNN e ViT puro per dataset ad alta risoluzione — una combinazione che con più dati permetterebbe di sbloccare performance irraggiungibili dagli approcci tradizionali
+4. **Sinergia SegFormer + 1080p**: il Mix-FFN agnostico alla risoluzione e l'encoder gerarchico MiT rendono SegFormer architetturalmente superiore a CNN e ViT puro per dataset ad alta risoluzione — una combinazione che con più dati potrebbe permettere di sbloccare performance irraggiungibili dagli approcci tradizionali
 
 ---
 
