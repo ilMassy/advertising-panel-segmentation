@@ -436,7 +436,7 @@ Tutti gli esperimenti condividono:
 **Validation Set (149 immagini)**:
 
 | Esperimento | Best Checkpoint | Val mIoU | Val Board IoU | Val Board Acc | Val mDice |
-|---|---|---|---|---|
+|---|---|---|---|---|---|
 | Exp0 - B0 Baseline | iter_18000 | 88.84% | 79.95% | 92.30% | 93.86% |
 | Exp1 - B1 Standard | iter_10000 | 88.36% | 79.09% | 92.01% | 93.56% |
 | **Exp2 - B1 Augmented** | **iter_14000** | **87.95%** | **78.33%** | **90.57%** | **93.31%** |
