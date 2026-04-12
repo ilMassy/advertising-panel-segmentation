@@ -89,205 +89,24 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 ## 🎬 Inferenza su Video
 
-Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline proposta opera alla **risoluzione originale di 1920×1080**, preservando il dettaglio spaziale senza introdurre downscaling esplicito, grazie all'encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione di input.
+Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline opera alla **risoluzione nativa 1920×1080**, preservando il dettaglio spaziale senza downscaling, grazie all'encoder gerarchico MiT agnostico alla risoluzione.
 
-> **Prerequisito**: assicurarsi di aver completato la sezione [⚙️ Installazione](#️-installazione) prima di eseguire il codice seguente.
-
-> **Nota implementativa**: il codice seguente rappresenta una proposta architetturale per l'inferenza su sequenze video. Sebbene sia coerente con le API di MMSegmentation e con il flusso di processamento previsto dal framework, non è stato ancora sottoposto a test funzionali su flussi video e potrebbe quindi generare errori. La pipeline è stata sviluppata per ambiente **Google Colab con GPU NVIDIA Tesla T4**.
-
-> **Nota sulla risoluzione**: risoluzioni inferiori (ad es. 720p o 480p) sono supportate, ma possono comportare una riduzione delle prestazioni sui dettagli sottili, in quanto il modello è stato addestrato su immagini a 1080p. Risoluzioni superiori (ad es. 4K) sono teoricamente gestibili, ma richiedono una quantità significativamente maggiore di memoria GPU e possono necessitare di un ridimensionamento preventivo per rientrare nei limiti hardware della **Tesla T4**.
+> Il codice seguente è pseudocodice — descrive il flusso concettuale della pipeline.
+> Sviluppato per **Google Colab con GPU NVIDIA Tesla T4**.
 
 <details>
 <summary>Visualizza inferenza su video</summary>
 
-### Step 1 — Scarica checkpoint e risorse da Hugging Face
-
-```python
-from huggingface_hub import hf_hub_download
-import os
-
-# --- Configuration ---
-REPO_ID = "ilMassy/advertising-panel-segmentation"
-CHECKPOINT_FILENAME = "models/exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth"
-LOCAL_DIR = "./checkpoints"
-
-# --- Download checkpoint from Hugging Face Hub ---
-checkpoint_path = hf_hub_download(
-    repo_id=REPO_ID,
-    filename=CHECKPOINT_FILENAME,
-    local_dir=LOCAL_DIR
-)
-
-# --- Sanity check ---
-if not os.path.exists(checkpoint_path):
-    raise FileNotFoundError("Checkpoint download failed")
-
-print(f"[INFO] Checkpoint available at: {checkpoint_path}")
 ```
-
-### Step 2 — Scarica la configurazione dal repository GitHub
-
-```python
-import os
-import subprocess
-
-# --- Configuration ---
-GITHUB_REPO = "https://github.com/ilMassy/advertising-panel-segmentation.git"
-LOCAL_REPO_DIR = "./repo"
-
-# --- Clone repository (if not already present) ---
-if not os.path.exists(LOCAL_REPO_DIR):
-    print("[INFO] Cloning GitHub repository...")
-    subprocess.run(["git", "clone", GITHUB_REPO, LOCAL_REPO_DIR], check=True)
-else:
-    print("[INFO] Repository already exists")
-
-# --- Path to config file ---
-CONFIG_PATH = os.path.join(
-    LOCAL_REPO_DIR,
-    "configs",
-    "segformer_b1_augmented.py"
-)
-
-# --- Validate config path ---
-if not os.path.exists(CONFIG_PATH):
-    raise FileNotFoundError(f"Config file not found: {CONFIG_PATH}")
-
-print(f"[INFO] Config loaded from: {CONFIG_PATH}")
-```
-
-### Step 3 — Carica il modello
-
-```python
-from mmseg.apis import init_model
-import torch
-
-# --- Device selection ---
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
-print(f"[INFO] Using device: {device}")
-
-# --- Initialize model ---
-model = init_model(
-    CONFIG_PATH,
-    checkpoint_path,
-    device=device
-)
-
-# --- Ensure test pipeline exists (fallback fix) ---
-if not hasattr(model.cfg, "test_pipeline"):
-    print("[WARNING] test_pipeline not found, falling back to val_pipeline")
-    model.cfg.test_pipeline = model.cfg.val_pipeline
-
-# --- Set evaluation mode ---
-model.eval()
-
-print("[INFO] Model initialized and ready")
-```
-
-### Step 4 — Inferenza frame per frame
-
-```python
-import cv2
-import torch
-import numpy as np
-from mmseg.apis import inference_model
-
-# ============================================================
-# Configuration
-# ============================================================
-
-INPUT_VIDEO = "video_input.mp4"
-OUTPUT_VIDEO = "video_output.mp4"
-
-# Class index according to config:
-# meta = ('background', 'board')
-TARGET_CLASS = 1
-
-USE_RESIZE = False
-RESIZE_TO = (1280, 720)
-
-# ============================================================
-# Video input
-# ============================================================
-
-cap = cv2.VideoCapture(INPUT_VIDEO)
-
-if not cap.isOpened():
-    raise RuntimeError("Cannot open input video")
-
-fps = cap.get(cv2.CAP_PROP_FPS) or 25
-width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-
-print(f"[INFO] Video: {width}x{height} @ {fps:.2f} FPS | {total} frames")
-
-# ============================================================
-# Video output
-# ============================================================
-
-fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-out = cv2.VideoWriter(OUTPUT_VIDEO, fourcc, fps, (width, height))
-
-# ============================================================
-# Inference loop
-# ============================================================
-
-with torch.no_grad(), torch.amp.autocast(device_type="cuda", dtype=torch.float16, enabled=torch.cuda.is_available()):
-
-    for i in range(total):
-
-        ret, frame = cap.read()
-        if not ret:
-            break
-
-        original_frame = frame
-
-        # --- Optional resize for performance ---
-
-        if USE_RESIZE:
-            frame = cv2.resize(frame, RESIZE_TO)
-
-        # --- Model inference (MMSeg expects BGR frame) ---
-
-        result = inference_model(model, frame)
-
-        # --- Segmentation mask extraction ---
-
-        mask = result.pred_sem_seg.data.squeeze().cpu().numpy()
-
-        # --- Restore original resolution if resized ---
-
-        if USE_RESIZE:
-            mask = cv2.resize(
-                mask.astype(np.uint8),
-                (width, height),
-                interpolation=cv2.INTER_NEAREST
-            )
-            frame = original_frame
-
-        # --- Visualization (overlay target class) ---
-
-        overlay = frame.copy()
-        overlay[mask == TARGET_CLASS] = (0, 0, 255)
-
-        blended = cv2.addWeighted(overlay, 0.45, frame, 0.55, 0)
-
-        out.write(blended)
-
-        # --- Progress logging ---
-
-        if (i + 1) % 50 == 0:
-            print(f"[INFO] Processed {i+1}/{total} frames")
-
-# ============================================================
-# Cleanup
-# ============================================================
-
-cap.release()
-out.release()
-
-print("[INFO] Video processing completed successfully")
+1. Scarica checkpoint da Hugging Face (exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth)
+2. Clona il repository GitHub per ottenere configs/segformer_b1_augmented.py
+3. Inizializza il modello con init_model(config, checkpoint, device="cuda:0")
+4. Per ogni frame del video di input (1920×1080):
+      a. Esegui inference_model(model, frame)
+      b. Estrai la maschera binaria predetta (0=background, 1=board)
+      c. Sovrapponi la maschera al frame originale (overlay rosso semi-trasparente)
+      d. Scrivi il frame annotato nel video di output
+5. Salva il video di output
 ```
 
 </details>
