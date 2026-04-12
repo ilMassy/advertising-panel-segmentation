@@ -95,9 +95,6 @@ Il modello può inoltre gestire input a risoluzione inferiore, adattandosi dinam
 
 > Il codice seguente è pseudocodice — descrive il flusso concettuale della pipeline.
 
-<details>
-<summary>Visualizza inferenza su video</summary>
-
 ```
 1. Scarica checkpoint da Hugging Face (exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth)
 2. Clona il repository GitHub per ottenere configs/segformer_b1_augmented.py
@@ -109,8 +106,6 @@ Il modello può inoltre gestire input a risoluzione inferiore, adattandosi dinam
    d. Salva il frame nel video di output
 5. Salva il video di output
 ```
-
-</details>
 
 ---
 
