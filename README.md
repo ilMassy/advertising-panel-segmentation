@@ -392,7 +392,7 @@ Il repository include:
 - [x] **Phase 4 - Domain-Specific Augmentation**: Implementazione di tecniche sport-specific (Motion Blur, Occlusion Cutout, Color Jitter) per migliorare la robustezza del modello. Best checkpoint a iter 14000 (mIoU 87.26%).
 - [x] **Phase 5 - Architectural Optimization**: Sperimentazione sistematica di ottimizzazioni architetturali (LR, decoder channels, stochastic depth dropout, early stopping). Nessuna configurazione ha superato Exp2 — analisi documentata nel repository.
 - [x] **Phase 6 - Critical Analysis & Benchmarking**: Confronto qualitativo e quantitativo tra tutti gli esperimenti con visualizzazione attention maps (B0 vs B1 Standard vs B1 Augmented), analisi top-5 best/worst cases sul test set, distribuzione errori TP/FP/FN. Modello ottimale identificato: Exp2 - B1 Augmented (mIoU 87.26%, gap Val→Test -0.69%).
-- [ ] **Phase 7 - Final Documentation**: Relazione tecnica dettagliata su architettura, training log, analisi dei casi d'uso difficili e sviluppi futuri.
+- [x] **Phase 7 - Final Documentation**: Relazione tecnica dettagliata su architettura, training log, analisi dei casi d'uso difficili e sviluppi futuri (vedi cartella docs/).
 
 ---
 
