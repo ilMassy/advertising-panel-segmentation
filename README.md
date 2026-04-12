@@ -92,7 +92,6 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline opera alla **risoluzione nativa 1920×1080**, preservando il dettaglio spaziale senza downscaling, grazie all'encoder gerarchico MiT agnostico alla risoluzione.
 
 > Il codice seguente è pseudocodice — descrive il flusso concettuale della pipeline.
-> Sviluppato per **Google Colab con GPU NVIDIA Tesla T4**.
 
 <details>
 <summary>Visualizza inferenza su video</summary>
@@ -102,10 +101,10 @@ Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inf
 2. Clona il repository GitHub per ottenere configs/segformer_b1_augmented.py
 3. Inizializza il modello con init_model(config, checkpoint, device="cuda:0")
 4. Per ogni frame del video di input (1920×1080):
-      a. Esegui inference_model(model, frame)
-      b. Estrai la maschera binaria predetta (0=background, 1=board)
-      c. Sovrapponi la maschera al frame originale (overlay rosso semi-trasparente)
-      d. Scrivi il frame annotato nel video di output
+   a. Esegui inferenza
+   b. Ottieni la maschera (board vs background)
+   c. Sovrapponi la maschera al frame
+   d. Salva il frame nel video di output
 5. Salva il video di output
 ```
 
