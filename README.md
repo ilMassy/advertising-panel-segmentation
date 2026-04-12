@@ -305,6 +305,9 @@ advertising-panel-segmentation/
 │   ├── segformer_b1_optimized2.py        # SegFormer-B1 optimized config (Phase 5 - opt2)
 │   ├── segformer_b1_optimized3.py        # SegFormer-B1 optimized config (Phase 5 - opt3)
 │   └── segformer_b1_standard.py          # SegFormer-B1 standard config (Phase 3)
+├── docs/
+│   ├── Final_Report_ITA.md               # Final technical report and analysis of results in Italian
+│   └── Presentation_ITA.pdf              # PowerPoint presentation in Italian
 ├── models/
 │   ├── checkpoints/
 │   │   └── README.md                     # Val set results and Val→Test gap analysis
