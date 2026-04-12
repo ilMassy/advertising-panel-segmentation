@@ -81,7 +81,7 @@ $$\text{IoU} = \frac{|M \cap \hat{M}|}{|M \cup \hat{M}|}$$
 
 $$\text{Dice} = \frac{2|M \cap \hat{M}|}{|M| + |\hat{M}|}$$
 
-$$\text{Precision} = \frac{TP}{TP + FP}, \quad \text{Recall} = \frac{TP}{TP + FN}$$
+$$\text{Precision} = \frac{TP}{TP + FP} \quad \text{Recall} = \frac{TP}{TP + FN}$$
 
 dove $M$ è la maschera ground truth e $\hat{M}$ quella predetta.
 
