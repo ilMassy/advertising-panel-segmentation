@@ -133,7 +133,7 @@ La pipeline di preprocessing si articola in quattro fasi:
 
 **Fase 1 — Estrazione frame** (`extract_frames.py`):
 ```python
-cv2.imwrite(output_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 95])
+cv2.imwrite(save_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 95])
 # Qualità 95/100 — perdita percettivamente impercettibile
 ```
 
@@ -147,7 +147,7 @@ mask = np.zeros((img_info['height'], img_info['width']), dtype=np.uint8)
 # Label ID: 0=background, 1=board
 mask[binary_mask > 0] = 1
 # Salvataggio PNG lossless
-cv2.imwrite(mask_path, mask)
+cv2.imwrite(os.path.join(mask_dir, mask_filename), mask)
 ```
 
 **Fase 4 — Verifica** (`check_masks.py`):
