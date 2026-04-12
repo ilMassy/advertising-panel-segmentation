@@ -377,7 +377,7 @@ advertising-panel-segmentation/
 │   └── segformer_b1_standard.py          # Configurazione SegFormer-B1 standard (Fase 3)
 ├── docs/
 │   ├── Final_Report_ITA.md               # Relazione tecnica finale e analisi dei risultati in italiano
-│   └── Presentation_ITA.pptx             # Presentazione powerpoint in italiano
+│   └── Presentation_ITA.pdf              # Presentazione powerpoint in italiano
 ├── models/
 │   ├── checkpoints/
 │   │   └── README.md                     # Risultati Val set e analisi del gap Val→Test
