@@ -89,11 +89,11 @@ sed -i 's/MMCV_MAX = .2.2.0./MMCV_MAX = "2.3.0"/' \
 
 ## 🎬 Inferenza su Video
 
-Il modello migliore (Exp2 — SegFormer-B1 Augmented) può essere esteso all'inferenza su video sportivi elaborando i frame individualmente. La pipeline opera alla **risoluzione nativa 1920×1080**, preservando il dettaglio spaziale senza downscaling, grazie all'encoder gerarchico MiT agnostico alla risoluzione.
+Il modello migliore (*Exp2 — SegFormer-B1 Augmented*) può essere esteso all’inferenza su video sportivi processando i frame in modo indipendente. La pipeline opera alla **risoluzione nativa 1920×1080**, preservando il dettaglio spaziale senza necessità di downscaling, grazie all’encoder gerarchico MiT, intrinsecamente agnostico alla risoluzione.
 
-Il modello può inoltre gestire input a risoluzione inferiore, adattandosi dinamicamente grazie alla natura resolution-agnostic dell'encoder MiT, con un possibile trade-off tra prestazioni e accuratezza.
+Il modello è inoltre in grado di gestire input a risoluzioni inferiori, adattandosi dinamicamente alla scala dell’immagine. In questi casi, si osserva un possibile trade-off tra efficienza computazionale e accuratezza della segmentazione.
 
-> Il codice seguente è pseudocodice — descrive il flusso concettuale della pipeline.
+> Il seguente pseudocodice descrive il flusso concettuale della pipeline di inferenza
 
 ```
 1. Scarica checkpoint da Hugging Face (exp2_segformer_b1_augmented/best_mIoU_iter_14000.pth)
