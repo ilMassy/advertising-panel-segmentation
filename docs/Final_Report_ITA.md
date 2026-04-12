@@ -76,7 +76,7 @@ Il problema è formalizzato come **Semantic Segmentation binaria**: dato un fram
 $$
 \hat{M}(i,j) =
 \begin{cases}
-1 & \text{se il pixel } (i,j) \text{ appartiene a un pannello pubblicitario} \\
+1 & \text{se il pixel } (i,j) \text{ appartiene a un pannello pubblicitario (board)} \\
 0 & \text{altrimenti (background)}
 \end{cases}
 $$
