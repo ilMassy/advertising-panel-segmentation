@@ -605,11 +605,11 @@ Il progetto ha raggiunto il suo obiettivo principale: identificare empiricamente
 
 4. Buslaev, A., Iglovikov, V. I., Khvedchenya, E., Parinov, A., Kurakin, A., & Kalinin, A. A. (2020). *Albumentations: Fast and Flexible Image Augmentations*. Information 2020, 11(2), 125. [DOI](https://www.mdpi.com/2078-2489/11/2/125)
 
-5. Deng, J., Dong, W., Socher, R., Li, L. J., Li, K., & Fei-Fei, L. (2009). *ImageNet: A Large-Scale Hierarchical Image Database*. CVPR 2009. [DOI](https://ieeexplore.ieee.org/document/5206848)
+5. Zheng, S., et al. (2021). *Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers (SETR)*. CVPR 2021. [arXiv:2012.15840](https://arxiv.org/abs/2012.15840)
 
 6. Chen, L. C., Papandreou, G., Schroff, F., & Adam, H. (2017). *Rethinking Atrous Convolution for Semantic Image Segmentation (DeepLab V3)*. [arXiv:1706.05587](https://arxiv.org/abs/1706.05587)
 
-7. Zheng, S., et al. (2021). *Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers (SETR)*. CVPR 2021. [arXiv:2012.15840](https://arxiv.org/abs/2012.15840)
+7. Deng, J., Dong, W., Socher, R., Li, L. J., Li, K., & Fei-Fei, L. (2009). *ImageNet: A Large-Scale Hierarchical Image Database*. CVPR 2009. [DOI](https://ieeexplore.ieee.org/document/5206848)
 
 ---
 
