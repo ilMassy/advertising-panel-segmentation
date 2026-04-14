@@ -71,7 +71,7 @@ Il task richiede un sistema in grado di operare su immagini ad alta risoluzione 
 
 ### 1.2 Formalizzazione del Problema
 
-Il problema è formalizzato come **Semantic Segmentation binaria**: dato un frame $I \in \mathbb{R}^{H \times W \times 3}$, il modello produce una maschera $$\hat{M} \in \left\{0,1\right\}^{H \times W}$$ dove:
+Il problema è formalizzato come **Semantic Segmentation binaria**: dato un frame $I \in \mathbb{R}^{H \times W \times 3}$, il modello produce una maschera $\hat{M} \in \{0,1\}^{H \times W}$ dove:
 
 $$
 \hat{M}(i,j) =
